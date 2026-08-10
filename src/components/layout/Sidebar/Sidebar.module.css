@@ -1,0 +1,212 @@
+.sidebar {
+  display: flex;
+  width: 188px;
+  height: 100%;
+
+  padding: 12px;
+
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+
+  flex-shrink: 0;
+
+  border-right: 1px solid #e1e4e8;
+  background: #fafbfc;
+
+  transition: width 0.2s ease;
+}
+
+.collapsed {
+  width: 64px;
+}
+
+/* 인사말 */
+
+.greeting {
+  display: flex;
+  height: 64px;
+  padding: 10px 8px;
+  align-items: center;
+  gap: 8px;
+
+  flex-shrink: 0;
+  align-self: stretch;
+
+  border-radius: 8px;
+}
+
+.collapseButton {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  padding: 8px;
+
+  justify-content: center;
+  align-items: center;
+
+  border: 0;
+  border-radius: 8px;
+  background: #eef0f2;
+}
+
+.collapsed .greeting {
+  justify-content: center;
+  padding: 10px;
+}
+
+
+/* 빠른 액션 */
+.quickActions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  padding-bottom: 8px;
+}
+
+/* 빠른 액션 공통 */
+.quickAction {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  height: 42px;
+  font-weight: 700;
+  padding: 10px 12px 10px 16px;
+
+  gap: 6px;
+
+  border: 1px solid #70dcdc;
+  border-radius: 10px;
+
+  background: #d4f8f8;
+  box-shadow: 0 0 8px rgba(55, 61, 68, 0.08);
+
+  color: #373d44;
+  cursor: pointer;
+}
+
+/* 대기예약 variant */
+.quickActionSecondary {
+  border-color: #e1e4e8;
+  background: #fff;
+}
+
+/* 텍스트 */
+.quickActionLabel {
+  flex: 1;
+
+  line-height: 160%;
+  text-align: left;
+}
+
+/* 아이콘 */
+.quickActionIcon {
+  display: flex;
+  width: 16px;
+  height: 16px;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+/* 대기예약 수 */
+.waitingCount {
+  color: #ff3b3b;
+}
+
+/* 사이드바 접힘 */
+.collapsed .quickAction {
+  justify-content: center;
+  padding: 10px;
+}
+
+/* 메뉴 */
+
+.menu {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.menuItem {
+  display: flex;
+  width: 100%;
+  padding: 10px 8px;
+
+  align-items: center;
+  gap: 8px;
+
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.menuItem:hover {
+  background: #f3f4f6;
+}
+
+.menuIcon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.menuLabel {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 160%;
+  color: #373d44;
+  white-space: nowrap;
+}
+
+.menuArrow {
+  width: 16px;
+  height: 16px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.active {
+  background: #eef0f2;
+}
+
+.subMenu {
+  display: flex;
+  flex-direction: column;
+
+  padding: 0 8px 4px 36px;
+  gap: 2px;
+}
+
+.subMenuItem {
+  display: flex;
+  width: 100%;
+  min-height: 36px;
+
+  align-items: center;
+
+  padding: 8px 12px;
+
+  border: 0;
+  border-radius: 6px;
+
+  background: transparent;
+
+  color: #4e5760;
+  font-size: 13px;
+  font-weight: 400;
+
+  text-align: left;
+  cursor: pointer;
+}
+
+.subMenuItem:hover {
+  background: #f3f4f6;
+}
