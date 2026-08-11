@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { User } from '@/types/user';
 
 import styles from './Sidebar.module.css';
 
@@ -30,7 +31,9 @@ const messageItems = [
   '메시지 내역',
 ];
 
-export function Sidebar() {
+interface SidebarProps { user: User; }
+
+export function Sidebar({ user }: SidebarProps) {
   const [isOpen, setIsOpen] = useState(true);
   const [isMessageOpen, setIsMessageOpen] = useState(false);
 
@@ -53,8 +56,8 @@ export function Sidebar() {
         {isOpen && (
           <p className={styles.greetingText}>
             안녕하세요,
-            <br />
-            마인드카페 매니저님!
+            <br/>
+            {user.name}님!
           </p>
         )}
 
@@ -182,8 +185,8 @@ export function Sidebar() {
                         : '/icons/arrow_drop_down.svg'
                     }
                     alt=""
-                    width={16}
-                    height={16}
+                    width={20}
+                    height={20}
                     className={styles.menuArrow}
                   />
                 )}

@@ -1,6 +1,11 @@
 import styles from './Header.module.css';
+import { User } from '@/types/user';
 
-export function Header() {
+interface HeaderProps {
+  user: User;
+}
+
+export function Header({ user }: HeaderProps) {
   return (
     <header className={styles.header}>
       <div className={styles.brand}>
@@ -48,7 +53,7 @@ export function Header() {
           />
 
           <span className={styles.userName}>
-            마인드카페점
+            {user.centerName}
           </span>
         </div>
 

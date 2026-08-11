@@ -3,12 +3,9 @@
   width: 100%;
   height: 48px;
   padding: 12px 24px;
-
   align-items: center;
   gap: 16px;
-
   flex-shrink: 0;
-
   background: #007777;
 }
 
@@ -96,8 +93,8 @@
 .userName {
   color: #ffffff;
 
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 700;
   line-height: 160%;
   white-space: nowrap;
 }
@@ -116,7 +113,7 @@
   border-radius: 8px;
 
   background: #ffffff;
-  color: #373d44;
+  color: #4E5760;
 
   font-size: 14px;
   font-weight: 700;
