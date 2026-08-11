@@ -2,6 +2,8 @@
   display: flex;
   width: 188px;
   height: 100%;
+  min-height: 0;
+
   padding: 12px;
   flex-direction: column;
   align-items: center;
@@ -15,7 +17,7 @@
 }
 
 .collapsed {
-  width: 64px;
+  width: 72px;
 }
 
 /* 인사말 */
@@ -26,7 +28,7 @@
   padding: 10px 8px;
   align-items: center;
   gap: 8px;
-  font-size: 14;
+  font-size: 14px;
   font-weight: 400;
 
   flex-shrink: 0;
@@ -72,7 +74,7 @@
   width: 100%;
   height: 42px;
   font-weight: 700;
-  font-size: 14;
+  font-size: 14px;
   padding: 10px 12px 10px 16px;
 
   gap: 6px;
@@ -128,8 +130,14 @@
 .menu {
   display: flex;
   width: 100%;
+  min-height: 0;
+
+  flex: 1;
   flex-direction: column;
   gap: 4px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .menuItem {

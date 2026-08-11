@@ -51,6 +51,8 @@
   line-height: 160%;
 
   cursor: pointer;
+
+  text-decoration: none;
 }
 
 .consoleItem.active {
@@ -61,7 +63,7 @@
 .userArea {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
 
   margin-left: auto;
 }

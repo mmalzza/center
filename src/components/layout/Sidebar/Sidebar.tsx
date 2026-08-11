@@ -10,6 +10,42 @@ interface SidebarProps {
   user: User;
 }
 
+interface QuickAction {
+  id: string;
+  label: string;
+  openIcon: string;
+  collapsedIcon: string;
+  href: string;
+  variant?: 'default' | 'secondary';
+  count?: number;
+}
+
+const quickActions: QuickAction[] = [
+  {
+    id: 'reservation',
+    label: '예약하기',
+    openIcon: '/icons/add.svg',
+    collapsedIcon: '/icons/event_add.svg',
+    href: '/reservations/new',
+  },
+  {
+    id: 'client',
+    label: '내담자 등록하기',
+    openIcon: '/icons/add.svg',
+    collapsedIcon: '/icons/person_add.svg',
+    href: '/clients/new',
+  },
+  {
+    id: 'waiting',
+    label: '대기예약',
+    openIcon: '/icons/arrow_forward_ios.svg',
+    collapsedIcon: '/icons/event_upcoming.svg',
+    href: '/reservations/waiting',
+    variant: 'secondary',
+    count: 8,
+  },
+];
+
 interface MenuItem {
   id: string;
   label: string;
@@ -36,10 +72,10 @@ const menuItems: MenuItem[] = [
 ];
 
 const messageItems = [
-  { label: '문자 발송', href: '/messages/send' },
-  { label: '문자 관리', href: '/messages/manage' },
-  { label: '알림톡', href: '/messages/alimtalk' },
-  { label: '메시지 내역', href: '/messages/history' },
+  { id: 'send', label: '문자 발송', href: '/messages/send' },
+  { id: 'manage', label: '문자 관리', href: '/messages/manage' },
+  { id: 'alimtalk', label: '알림톡', href: '/messages/alimtalk' },
+  { id: 'history', label: '메시지 내역', href: '/messages/history' },
 ];
 
 export function Sidebar({ user }: SidebarProps) {
@@ -109,83 +145,48 @@ export function Sidebar({ user }: SidebarProps) {
 
       {/* 빠른 액션 */}
       <div className={styles.quickActions}>
-        <button
-          type="button"
-          className={styles.quickAction}
-          onClick={() => router.push('/reservations/new')}
-        >
-          {isOpen && (
-            <span className={styles.quickActionLabel}>
-              예약하기
-            </span>
-          )}
+        {quickActions.map((action) => (
+          <button
+            key={action.id}
+            type="button"
+            className={`${styles.quickAction} ${ //각 버튼의 action.variant 값이 'secondary'인 경우
+              action.variant === 'secondary'
+                ? styles.quickActionSecondary
+                : ''
+            }`}
+            onClick={() => router.push(action.href)} 
+            aria-label={action.count !== undefined ? `${action.label} (${action.count})` : action.label}
+            title={!isOpen ? action.label : undefined}
+          >
+            {isOpen && ( // 사이드바 상태에 따라서
+              <span className={styles.quickActionLabel}>
+                {action.label}
 
-          <span className={styles.quickActionIcon}>
-            <img
-              src={
-                isOpen
-                  ? '/icons/add.svg'
-                  : '/icons/event_add.svg'
-              }
-              alt=""
-              width={16}
-              height={16}
-            />
-          </span>
-        </button>
-
-        <button
-          type="button"
-          className={styles.quickAction}
-          onClick={() => router.push('/clients/new')}
-        >
-          {isOpen && (
-            <span className={styles.quickActionLabel}>
-              내담자 등록하기
-            </span>
-          )}
-
-          <span className={styles.quickActionIcon}>
-            <img
-              src={
-                isOpen
-                  ? '/icons/add.svg'
-                  : '/icons/person_add.svg'
-              }
-              alt=""
-              width={16}
-              height={16}
-            />
-          </span>
-        </button>
-
-        <button
-          type="button"
-          className={`${styles.quickAction} ${styles.quickActionSecondary}`}
-          onClick={() => router.push('/reservations/waiting')}
-        >
-          {isOpen && (
-            <span className={styles.quickActionLabel}>
-              대기예약{' '}
-              <span className={styles.waitingCount}>
-                (8)
+                {action.count !== undefined && (
+                  <>
+                    {' '}
+                    <span className={styles.waitingCount}>
+                      ({action.count})
+                    </span>
+                  </>
+                )}
               </span>
-            </span>
-          )}
+            )}
 
-          <span className={styles.quickActionIcon}>
-            <img
-              src={
-                isOpen
-                  ? '/icons/arrow_forward_ios.svg'
-                  : '/icons/event_upcoming.svg'
-              }
-              alt=""
-              width={16}
-              height={16}
-            />
-          </span>
-        </button>
+            <span className={styles.quickActionIcon}>
+              <img
+                src={
+                  isOpen
+                    ? action.openIcon
+                    : action.collapsedIcon
+                }
+                alt=""
+                width={16}
+                height={16}
+              />
+            </span>
+          </button>
+        ))}
       </div>
 
       {/* 메뉴 */}
@@ -198,7 +199,7 @@ export function Sidebar({ user }: SidebarProps) {
             : false;
 
           return (
-            <div key={item.label}>
+            <div key={item.id}>
               {isMessageMenu ? (
                 <button
                   type="button"
@@ -274,7 +275,7 @@ export function Sidebar({ user }: SidebarProps) {
 
                     return (
                       <Link
-                        key={subItem.label}
+                        key={subItem.id}
                         href={subItem.href}
                         className={`${styles.subMenuItem} ${
                           subActive ? styles.subMenuItemActive : ''
