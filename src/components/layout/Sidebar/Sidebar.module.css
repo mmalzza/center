@@ -145,6 +145,7 @@
   background: transparent;
 
   cursor: pointer;
+  text-decoration: none;
 }
 
 .menuItem:hover {
@@ -204,6 +205,11 @@
 
   text-align: left;
   cursor: pointer;
+  text-decoration: none;
+}
+
+.subMenuItemActive {
+  background: #eef0f2;
 }
 
 .subMenuItem:hover {

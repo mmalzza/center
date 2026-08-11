@@ -1,41 +1,62 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+
 import { User } from '@/types/user';
 
 import styles from './Sidebar.module.css';
+import Link from 'next/link';
 
-const menuItems = [
-  { label: '홈', icon: '/icons/home.svg' },
-  { label: '예약 일정', icon: '/icons/calendar_today.svg' },
-  { label: '상담방', icon: '/icons/forum.svg' },
-  { label: '내담자 관리', icon: '/icons/group.svg' },
-  { label: '문서', icon: '/icons/draft.svg' },
-  { label: '메시지', icon: '/icons/mail.svg', hasSubMenu: true, },
-  { label: '통화 이력', icon: '/icons/call.svg' },
-  { label: '전문가', icon: '/icons/award_star.svg' },
-  { label: '상품', icon: '/icons/hand_package.svg' },
-  { label: '판매', icon: '/icons/paid.svg' },
-  { label: '후기', icon: '/icons/outlined.svg' },
-  { label: '이용 기록', icon: '/icons/history.svg' },
-  {
-    label: '대시보드',
-    icon: '/icons/bar_chart_4_bars.svg',
-    active: true,
-  },
-  { label: '설정', icon: '/icons/settings.svg' },
+interface SidebarProps {
+  user: User;
+}
+
+interface MenuItem {
+  id: string;
+  label: string;
+  icon: string;
+  href?: string;
+  hasSubMenu?: boolean;
+}
+
+const menuItems: MenuItem[] = [
+  { id: 'home', label: '홈', icon: '/icons/home.svg', href: '/home' },
+  { id: 'reservations', label: '예약 일정', icon: '/icons/calendar_today.svg', href: '/reservations' },
+  { id: 'counselings', label: '상담방', icon: '/icons/forum.svg', href: '/counselings' },
+  { id: 'clients', label: '내담자 관리', icon: '/icons/group.svg', href: '/clients' },
+  { id: 'documents', label: '문서', icon: '/icons/draft.svg', href: '/documents' },
+  { id: 'message', label: '메시지', icon: '/icons/mail.svg', hasSubMenu: true },
+  { id: 'calls', label: '통화 이력', icon: '/icons/call.svg', href: '/calls' },
+  { id: 'experts', label: '전문가', icon: '/icons/award_star.svg', href: '/experts' },
+  { id: 'products', label: '상품', icon: '/icons/hand_package.svg', href: '/products' },
+  { id: 'sales', label: '판매', icon: '/icons/paid.svg', href: '/sales' },
+  { id: 'reviews', label: '후기', icon: '/icons/outlined.svg', href: '/reviews' },
+  { id: 'history', label: '이용 기록', icon: '/icons/history.svg', href: '/history' },
+  { id: 'dashboard', label: '대시보드', icon: '/icons/bar_chart_4_bars.svg', href: '/' },
+  { id: 'settings', label: '설정', icon: '/icons/settings.svg', href: '/settings' },
 ];
 
 const messageItems = [
-  '문자발송',
-  '문자 관리',
-  '알림톡',
-  '메시지 내역',
+  { label: '문자 발송', href: '/messages/send' },
+  { label: '문자 관리', href: '/messages/manage' },
+  { label: '알림톡', href: '/messages/alimtalk' },
+  { label: '메시지 내역', href: '/messages/history' },
 ];
 
-interface SidebarProps { user: User; }
-
 export function Sidebar({ user }: SidebarProps) {
+  const router = useRouter();
+
   const [isOpen, setIsOpen] = useState(true);
   const [isMessageOpen, setIsMessageOpen] = useState(false);
+
+  const isMessagePage = messageItems.some(
+    (item) => router.pathname === item.href
+  );
+
+  useEffect(() => {
+    if (isMessagePage) {
+      setIsMessageOpen(true);
+    }
+  }, [isMessagePage]);
 
   const handleToggle = () => {
     setIsOpen((prev) => !prev);
@@ -43,6 +64,12 @@ export function Sidebar({ user }: SidebarProps) {
 
   const handleMessageToggle = () => {
     setIsMessageOpen((prev) => !prev);
+  };
+
+  const isActive = (href?: string) => {
+    if (!href) return false;
+
+    return router.pathname === href;
   };
 
   return (
@@ -56,7 +83,7 @@ export function Sidebar({ user }: SidebarProps) {
         {isOpen && (
           <p className={styles.greetingText}>
             안녕하세요,
-            <br/>
+            <br />
             {user.name}님!
           </p>
         )}
@@ -66,7 +93,9 @@ export function Sidebar({ user }: SidebarProps) {
           className={styles.collapseButton}
           onClick={handleToggle}
           aria-label={
-            isOpen ? '사이드바 접기' : '사이드바 펼치기'
+            isOpen
+              ? '사이드바 접기'
+              : '사이드바 펼치기'
           }
         >
           <img
@@ -83,6 +112,7 @@ export function Sidebar({ user }: SidebarProps) {
         <button
           type="button"
           className={styles.quickAction}
+          onClick={() => router.push('/reservations/new')}
         >
           {isOpen && (
             <span className={styles.quickActionLabel}>
@@ -92,7 +122,11 @@ export function Sidebar({ user }: SidebarProps) {
 
           <span className={styles.quickActionIcon}>
             <img
-              src={isOpen ? '/icons/add.svg' : '/icons/event_add.svg'}
+              src={
+                isOpen
+                  ? '/icons/add.svg'
+                  : '/icons/event_add.svg'
+              }
               alt=""
               width={16}
               height={16}
@@ -103,6 +137,7 @@ export function Sidebar({ user }: SidebarProps) {
         <button
           type="button"
           className={styles.quickAction}
+          onClick={() => router.push('/clients/new')}
         >
           {isOpen && (
             <span className={styles.quickActionLabel}>
@@ -112,7 +147,11 @@ export function Sidebar({ user }: SidebarProps) {
 
           <span className={styles.quickActionIcon}>
             <img
-              src={isOpen ? '/icons/add.svg' : '/icons/person_add.svg'}
+              src={
+                isOpen
+                  ? '/icons/add.svg'
+                  : '/icons/person_add.svg'
+              }
               alt=""
               width={16}
               height={16}
@@ -123,6 +162,7 @@ export function Sidebar({ user }: SidebarProps) {
         <button
           type="button"
           className={`${styles.quickAction} ${styles.quickActionSecondary}`}
+          onClick={() => router.push('/reservations/waiting')}
         >
           {isOpen && (
             <span className={styles.quickActionLabel}>
@@ -135,9 +175,13 @@ export function Sidebar({ user }: SidebarProps) {
 
           <span className={styles.quickActionIcon}>
             <img
-              src={isOpen ? '/icons/arrow_forward_ios.svg' : '/icons/event_upcoming.svg'}
+              src={
+                isOpen
+                  ? '/icons/arrow_forward_ios.svg'
+                  : '/icons/event_upcoming.svg'
+              }
               alt=""
-              width={16} 
+              width={16}
               height={16}
             />
           </span>
@@ -147,65 +191,99 @@ export function Sidebar({ user }: SidebarProps) {
       {/* 메뉴 */}
       <nav className={styles.menu}>
         {menuItems.map((item) => {
-          const isMessageMenu = item.label === '메시지';
+          const isMessageMenu = item.id === 'message';
+
+          const active = item.href
+            ? isActive(item.href)
+            : false;
 
           return (
             <div key={item.label}>
-              <button
-                type="button"
-                className={`${styles.menuItem} ${
-                  item.active ? styles.active : ''
-                }`}
-                title={!isOpen ? item.label : undefined}
-                onClick={
-                  isMessageMenu
-                    ? handleMessageToggle
-                    : undefined
-                }
-              >
-                <img
-                  src={item.icon}
-                  alt=""
-                  width={20}
-                  height={20}
-                  className={styles.menuIcon}
-                />
-
-                {isOpen && (
-                  <span className={styles.menuLabel}>
-                    {item.label}
-                  </span>
-                )}
-
-                {isOpen && item.hasSubMenu && (
+              {isMessageMenu ? (
+                <button
+                  type="button"
+                  className={`${styles.menuItem} ${
+                    active ? styles.active : ''
+                  }`}
+                  title={!isOpen ? item.label : undefined}
+                  aria-label={item.label}
+                  aria-expanded={isMessageOpen}
+                  onClick={handleMessageToggle}
+                >
                   <img
-                    src={
-                      isMessageOpen
-                        ? '/icons/arrow_drop_up.svg'
-                        : '/icons/arrow_drop_down.svg'
-                    }
+                    src={item.icon}
                     alt=""
                     width={20}
                     height={20}
-                    className={styles.menuArrow}
+                    className={styles.menuIcon}
                   />
-                )}
-              </button>
+
+                  {isOpen && (
+                    <span className={styles.menuLabel}>
+                      {item.label}
+                    </span>
+                  )}
+
+                  {isOpen && item.hasSubMenu && (
+                    <img
+                      src={
+                        isMessageOpen
+                          ? '/icons/arrow_drop_up.svg'
+                          : '/icons/arrow_drop_down.svg'
+                      }
+                      alt=""
+                      width={20}
+                      height={20}
+                      className={styles.menuArrow}
+                    />
+                  )}
+                </button>
+              ) : (
+                <Link
+                  href={item.href}
+                  className={`${styles.menuItem} ${
+                    active ? styles.active : ''
+                  }`}
+                  title={!isOpen ? item.label : undefined}
+                  aria-label={item.label}
+                  aria-current={active ? 'page' : undefined}
+                >
+                  <img
+                    src={item.icon}
+                    alt=""
+                    width={20}
+                    height={20}
+                    className={styles.menuIcon}
+                  />
+
+                  {isOpen && (
+                    <span className={styles.menuLabel}>
+                      {item.label}
+                    </span>
+                  )}
+                </Link>
+              )}
 
               {/* 메시지 하위 메뉴 */}
               {isOpen &&
                 isMessageMenu &&
                 isMessageOpen && (
                   <div className={styles.subMenu}>
-                    {messageItems.map((subItem) => (
-                      <button
-                        key={subItem}
-                        type="button"
-                        className={styles.subMenuItem}
+                    {messageItems.map((subItem) => {
+                    const subActive = isActive(subItem.href);
+
+                    return (
+                      <Link
+                        key={subItem.label}
+                        href={subItem.href}
+                        className={`${styles.subMenuItem} ${
+                          subActive ? styles.subMenuItemActive : ''
+                        }`}
                       >
-                        {subItem}
-                      </button>
-                    ))}
+                        {subItem.label}
+                      </Link>
+                    );
+                  })}
                   </div>
                 )}
             </div>
