@@ -1,17 +1,24 @@
-import { ReactNode } from 'react';
+import dashboardData from '@/data/dashboard.json';
+
+import { TopSummaryBarData } from '@/types/dashboard';
+
+import { KpiCard } from '../KpiCard/KpiCard';
 
 import styles from './DashboardGrid.module.css';
 
-interface DashboardGridProps {
-  children: ReactNode;
-}
+export function DashboardGrid() {
+  const topSummary = dashboardData.topSummary as TopSummaryBarData;
 
-export function DashboardGrid({
-  children,
-}: DashboardGridProps) {
   return (
-    <section className={styles.grid}>
-      {children}
-    </section>
+    <div className={styles.dashboardGrid}>
+      <section className={styles.kpiSection}>
+        {topSummary.metrics.map((metric) => (
+          <KpiCard
+            key={metric.id}
+            metric={metric}
+          />
+        ))}
+      </section>
+    </div>
   );
 }

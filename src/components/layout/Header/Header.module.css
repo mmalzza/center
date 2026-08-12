@@ -33,15 +33,14 @@
 
 .consoleItem {
   display: flex;
-  height: 32px;
-  padding: 6px 12px;
-
   align-items: center;
   justify-content: center;
+  height: 36px;
+  padding: 10px 12px;
   gap: 4px;
 
   border: 0;
-  border-radius: 8px;
+  border-radius: 12px;
 
   background: transparent;
   color: #ffffff;
@@ -53,10 +52,11 @@
   cursor: pointer;
 
   text-decoration: none;
+  box-sizing: border-box;
 }
 
 .consoleItem.active {
-  background: #006666;
+  background: #005454;
 }
 
 /* 오른쪽 사용자 영역 */

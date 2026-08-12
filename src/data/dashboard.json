@@ -1,0 +1,250 @@
+{
+  "header": {
+    "pageTitle": "대시보드",
+    "lastUpdated": "2026.05.08 15:07 (KST)"
+  },
+  "notice": {
+    "title": "확인해 주세요",
+    "messages": [
+      "대시보드에서는 서비스 내에서 판매되고 있는 서비스 이용 정보를 데이터로 제공하고 있습니다.",
+      "페이지 접속 시간 기준의 통계 데이터를 집계하고 있어 최신 데이터로 업데이트를 원하시면, 새로고침 을 활용해 주세요."
+    ]
+  },
+  "filter": {
+    "dateSelectionType": "맞춤 설정",
+    "selectedPreset": "THIS_MONTH",
+    "presetOptions": [
+      { "id": "THIS_MONTH", "label": "이번 달" },
+      { "id": "TODAY", "label": "오늘" },
+      { "id": "YESTERDAY", "label": "어제" },
+      { "id": "DAYS_30", "label": "30일" },
+      { "id": "DAYS_90", "label": "90일" },
+      { "id": "DAYS_180", "label": "180일" },
+      { "id": "DAYS_365", "label": "365일" }
+    ],
+    "selectedAggregationUnit": "MONTHLY",
+    "aggregationOptions": [
+      { "id": "DAILY", "label": "일별" },
+      { "id": "WEEKLY", "label": "주별" },
+      { "id": "MONTHLY", "label": "월별" }
+    ],
+    "startDate": "2026.07.01",
+    "endDate": "2026.07.10"
+  },
+  "topSummary": {
+    "targetMonth": "7월",
+    "metrics": [
+      {
+        "id": "monthly_usage",
+        "label": "7월 이용",
+        "value": 248,
+        "unit": "건",
+        "accumulatedValue": 1248,
+        "comparisonLabel": "지난달 대비",
+        "trend": { "direction": "UP", "value": 12.3, "unit": "%" }
+      },
+      {
+        "id": "monthly_users",
+        "label": "7월 이용자",
+        "value": 183,
+        "unit": "명",
+        "accumulatedValue": 300,
+        "comparisonLabel": "지난달 대비",
+        "trend": { "direction": "UP", "value": 8.7, "unit": "%" }
+      },
+      {
+        "id": "avg_per_user",
+        "label": "인당 평균",
+        "value": 1.4,
+        "unit": "회",
+        "comparisonLabel": "지난달 대비",
+        "trend": { "direction": "UP", "value": 0.3, "unit": "회" }
+      }
+    ]
+  },
+  "repurchaseRate": {
+    "widgetType": "DONUT",
+    "title": "회기 재구매율",
+    "startDate": "2026-07-01",
+    "endDate": "2026-07-14",
+    "infoTooltipText": "선택한 기간 동안 이전 구매 이력이 있는 고객의 재구매 비율입니다.",
+    "summary": {
+      "label": "전체 재구매율",
+      "rate": 70.0,
+      "comparisonLabel": "전월 대비",
+      "trend": { "direction": "UP", "value": 11 }
+    },
+    "chartData": [
+      {
+        "id": "ONLINE",
+        "label": "온라인",
+        "percentage": 45,
+        "userCount": 90,
+        "colorCode": "#1877F2",
+        "tooltipDetails": [
+          { "label": "1개월 이내", "count": 42, "unit": "건" },
+          { "label": "3개월 이내", "count": 32, "unit": "건" },
+          { "label": "1년 이내", "count": 26, "unit": "건" }
+        ]
+      },
+      {
+        "id": "OFFLINE",
+        "label": "오프라인",
+        "percentage": 35,
+        "userCount": 70,
+        "colorCode": "#28249C"
+      },
+      {
+        "id": "UNPURCHASED",
+        "label": "미구매",
+        "percentage": 20,
+        "userCount": 40,
+        "colorCode": "#BDBDBD"
+      }
+    ]
+  },
+  "reservationRate": {
+    "widgetType": "LINE",
+    "title": "예약 증감율",
+    "startDate": "2026-07-01",
+    "endDate": "2026-07-14",
+    "infoTooltipText": "월별 총 예약 건수 및 기존/신규 고객 예약 추이를 나타냅니다.",
+    "unit": "건",
+    "referenceLine": {
+      "label": "목표선",
+      "value": 110,
+      "unit": "건"
+    },
+    "seriesConfigs": [
+      { "id": "total", "label": "총 예약", "colorCode": "#28249C" },
+      { "id": "existing", "label": "기존 예약", "colorCode": "#1877F2" },
+      { "id": "new", "label": "신규 예약", "colorCode": "#A8A8F0" }
+    ],
+    "chartData": [
+      {
+        "period": "4월",
+        "values": { "total": 45, "existing": 42, "new": 35 }
+      },
+      {
+        "period": "5월",
+        "values": { "total": 142, "existing": 90, "new": 52 }
+      },
+      {
+        "period": "6월",
+        "values": { "total": 110, "existing": 90, "new": 42 }
+      },
+      {
+        "period": "7월",
+        "values": { "total": 142, "existing": 90, "new": 52 }
+      }
+    ]
+  },
+  "monthlySales": {
+    "widgetType": "BAR",
+    "title": "월별 매출 현황",
+    "startDate": "2026-07-01",
+    "endDate": "2026-07-14",
+    "infoTooltipText": "월별 총 매출, 신규 매출 및 환불·취소 금액 현황입니다.",
+    "unit": "만원",
+    "seriesConfigs": [
+      { "id": "total", "label": "총 매출", "colorCode": "#28249C" },
+      { "id": "new", "label": "신규 매출", "colorCode": "#1877F2" },
+      { "id": "refund", "label": "환불·취소", "colorCode": "#BDBDBD" }
+    ],
+    "chartData": [
+      { "period": "2026.01", "values": { "total": 780, "new": 450, "refund": 70 } },
+      { "period": "2026.02", "values": { "total": 700, "new": 450, "refund": 40 } },
+      { "period": "2026.03", "values": { "total": 800, "new": 500, "refund": 50 } },
+      { "period": "2026.04", "values": { "total": 780, "new": 450, "refund": 70 } },
+      { "period": "2026.05", "values": { "total": 910, "new": 600, "refund": 40 } },
+      { "period": "2026.06", "values": { "total": 930, "new": 580, "refund": 40 } },
+      { "period": "2026.07", "values": { "total": 400, "new": 200, "refund": 15 } }
+    ]
+  },
+  "expertOrders": {
+    "widgetType": "RANKING",
+    "title": "전문가 오더건수",
+    "startDate": "2026-07-01",
+    "endDate": "2026-07-14",
+    "infoTooltipText": "전문가별 담당 상담 건수, 전체 대비 비중 및 전월 대비 증감율입니다.",
+    "hasNameMaskingToggle": true,
+    "categories": [
+      { "id": "ALL", "label": "전체" },
+      { "id": "COUNSELING", "label": "심리 상담" },
+      { "id": "THERAPY_CHILD", "label": "심리 치료(아동)" },
+      { "id": "TEST", "label": "심리 검사" },
+      { "id": "CLINICAL_EVAL", "label": "임상 평가" },
+      { "id": "CHILD_EVAL", "label": "아동 평가" },
+      { "id": "ETC", "label": "기타" },
+      { "id": "GROUP", "label": "그룹" },
+      { "id": "VOUCHER", "label": "바우처" }
+    ],
+    "seriesConfigs": [
+      { "id": "orderCount", "label": "상담 건수", "colorCode": "#28249C" },
+      { "id": "sharePercentage", "label": "상담 비중", "colorCode": "#1877F2" },
+      { "id": "trend", "label": "전월대비 증감율", "colorCode": "#000000" }
+    ],
+    "chartData": [
+      { "rank": 1, "expertName": "김민재", "category": "심리 상담", "orderCount": 48, "sharePercentage": 20, "trend": { "direction": "UP", "value": 15 } },
+      { "rank": 2, "expertName": "이소영", "category": "심리 치료(아동)", "orderCount": 42, "sharePercentage": 18, "trend": { "direction": "UP", "value": 8 } },
+      { "rank": 3, "expertName": "박동현", "category": "임상 평가", "orderCount": 35, "sharePercentage": 16, "trend": { "direction": "DOWN", "value": 12 } },
+      { "rank": 4, "expertName": "최수지", "category": "심리 검사", "orderCount": 29, "sharePercentage": 14, "trend": { "direction": "UP", "value": 5 } },
+      { "rank": 5, "expertName": "정도현", "category": "심리 상담", "orderCount": 25, "sharePercentage": 10, "trend": { "direction": "UP", "value": 2 } }
+    ]
+  },
+  "employeeResponses": {
+    "widgetType": "LIST_BAR",
+    "title": "직원별 문의 응대 현황",
+    "startDate": "2026-07-01",
+    "endDate": "2026-07-14",
+    "infoTooltipText": "직원별 문의 응대 건수, 근무/휴무 상태 및 센터 평균 대비 변동 건수입니다.",
+    "hasOffEmployeeToggle": true,
+    "averageCount": 128,
+    "unit": "건",
+    "seriesConfigs": [
+      { "id": "working", "label": "근무", "colorCode": "#006666" },
+      { "id": "off", "label": "휴무", "colorCode": "#BDBDBD" }
+    ],
+    "chartData": [
+      { "id": "emp_1", "employeeName": "이지연", "isOff": false, "responseCount": 142, "trend": { "direction": "UP", "value": 14 } },
+      { "id": "emp_2", "employeeName": "최원우", "isOff": false, "responseCount": 128, "trend": { "direction": "NONE", "value": 0 } },
+      { "id": "emp_3", "employeeName": "정다은", "isOff": true, "responseCount": 115, "trend": { "direction": "DOWN", "value": 10 } },
+      { "id": "emp_4", "employeeName": "김민수", "isOff": false, "responseCount": 98, "trend": { "direction": "DOWN", "value": 30 } },
+      { "id": "emp_5", "employeeName": "박소연", "isOff": true, "responseCount": 82, "trend": { "direction": "DOWN", "value": 46 } }
+    ]
+  },
+  "offlineDeskConversion": {
+    "widgetType": "PROGRESS_KPI",
+    "title": "오프라인 데스크 예약 전환율",
+    "startDate": "2026-07-01",
+    "endDate": "2026-07-14",
+    "infoTooltipText": "오프라인 데스크 전체 문의 건수 대비 최종 예약으로 전환된 비율입니다.",
+    "conversionRate": 72.1,
+    "comparisonLabel": "전월 대비",
+    "trend": { "direction": "UP", "value": 11 },
+    "numerator": { "label": "예약", "value": 245, "unit": "건" },
+    "denominator": { "label": "전체 문의", "value": 340, "unit": "건" },
+    "colorCode": "#006666"
+  },
+  "expertConnection": {
+    "widgetType": "LINE_WITH_SUMMARY",
+    "title": "전문가 연계율",
+    "startDate": "2026-07-01",
+    "endDate": "2026-07-14",
+    "infoTooltipText": "본사 예약 인입 건수 대비 전문가 연결(예약 수락)이 완료된 비율의 월별 추이입니다.",
+    "unit": "%",
+    "colorCode": "#006666",
+    "chartData": [
+      { "period": "3월", "rate": 80.0 },
+      { "period": "4월", "rate": 85.2 },
+      { "period": "5월", "rate": 80.0, "tooltipDetails": { "inboundCount": 142, "acceptedCount": 124, "connectionRate": 89.5 } },
+      { "period": "6월", "rate": 86.4 },
+      { "period": "7월(현재)", "rate": 88.5 }
+    ],
+    "bottomSummary": [
+      { "label": "본사 예약 인입", "value": 140, "unit": "건" },
+      { "label": "예약 수락", "value": 124, "unit": "건" },
+      { "label": "연계율", "value": 88.5, "unit": "%" }
+    ]
+  }
+}

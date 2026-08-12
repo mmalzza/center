@@ -3,12 +3,10 @@ import { DashboardGrid } from '@/components/dashboard/DashboardGrid/DashboardGri
 
 import { user } from '@/types/user';
 
-export default function HomePage() {
+export default function DashboardPage() {
   return (
     <CenterLayout user={user}>
-      <DashboardGrid>
-        <h1>대시보드</h1>
-      </DashboardGrid>
+      <DashboardGrid />
     </CenterLayout>
   );
 }
