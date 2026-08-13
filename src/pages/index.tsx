@@ -8,5 +8,6 @@ export default function DashboardPage() {
     <CenterLayout user={user}>
       <DashboardGrid />
     </CenterLayout>
+    
   );
 }

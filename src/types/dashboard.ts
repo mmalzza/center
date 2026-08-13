@@ -240,6 +240,7 @@ export interface ExpertConnectionWidgetData extends BaseWidget {
 export interface DashboardResponse {
   header: DashboardHeaderInfo;
   notice: DashboardNoticeInfo;
+  filter: DashboardFilterConfig;
   topSummary: TopSummaryBarData;
   repurchaseRate: RepurchaseWidgetData;
   reservationRate: ReservationRateWidgetData;
