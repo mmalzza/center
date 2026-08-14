@@ -27,7 +27,7 @@ export function ExpertConnectionWidget({
     <Widget>
       <WidgetHeader widget={data} />
 
-      <div className="h-[280px]">
+      <div className="h-[280px] w-full">
         <ResponsiveContainer
           width="100%"
           height="100%"
@@ -42,15 +42,15 @@ export function ExpertConnectionWidget({
             }}
           >
             <CartesianGrid
-              stroke="#E5E7EB"
+              stroke="#D2D6DB"
               vertical={false}
             />
 
             <XAxis
               dataKey="period"
               tick={{
-                fontSize: 10,
-                fill: '#777',
+                fontSize: 11,
+                fill: '#7E8A96',
               }}
               axisLine={false}
               tickLine={false}
@@ -58,30 +58,47 @@ export function ExpertConnectionWidget({
 
             <YAxis
               domain={[50, 100]}
-              ticks={[
-                50,
-                60,
-                70,
-                80,
-                90,
-                100,
-              ]}
+              ticks={[50, 60, 70, 80, 90, 100]}
               tickFormatter={(value) =>
                 `${value}%`
               }
               tick={{
-                fontSize: 9,
-                fill: '#999',
+                fontSize: 11,
+                fill: '#7E8A96',
               }}
               axisLine={false}
               tickLine={false}
             />
 
             <Tooltip
-              formatter={(value: number) => [
-                `${value}%`,
-                '연계율',
-              ]}
+              content={({ active, payload, label }) => {
+                if (!active || !payload || !payload.length) return null;
+
+                return (
+                  <div className="rounded-input border border-neutral-200 bg-neutral-50 p-2.5 text-[11px] text-neutral-900 shadow-md">
+                    <p className="mb-1.5 font-bold">{label}</p>
+                    <div className="flex flex-col gap-1">
+                      {payload.map((entry) => (
+                        <div
+                          key={entry.dataKey as string}
+                          className="flex items-center justify-between gap-4"
+                        >
+                          <div className="flex items-center gap-1.5">
+                            <span
+                              className="h-2 w-2 rounded-full"
+                              style={{ backgroundColor: entry.color }}
+                            />
+                            <span className="text-neutral-700">{entry.name}</span>
+                          </div>
+                          <span className="font-semibold text-neutral-900">
+                            {entry.value ?? 0}%
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }}
             />
 
             <Line
@@ -106,31 +123,31 @@ export function ExpertConnectionWidget({
                 formatter={(value) =>
                   `${value}%`
                 }
-                className="text-[9px] font-semibold"
+                className="text-[12px] font-semibold"
               />
             </Line>
           </LineChart>
         </ResponsiveContainer>
       </div>
 
-      <div className="mt-2 grid grid-cols-3 divide-x divide-gray-200 border-t border-gray-100 pt-5">
+      <div className="mt-2 w-full grid grid-cols-3 divide-x divide-neutral-200 border-t border-neutral-50 pt-5">
         {data.bottomSummary.map((item) => (
           <div
             key={item.label}
             className="text-center"
           >
-            <p className="text-[10px] text-gray-400">
+            <p className="text-[12px] text-neutral-700">
               {item.label}
             </p>
 
             <strong
-              className="mt-1 block text-[21px] font-bold"
+              className="mt-1 block text-[24px] font-bold"
               style={{
                 color: data.colorCode,
               }}
             >
               {item.value}
-              <span className="ml-0.5 text-[11px]">
+              <span className="ml-0.5 text-[24px]">
                 {item.unit}
               </span>
             </strong>

@@ -1,13 +1,12 @@
 {
   "header": {
-    "pageTitle": "대시보드",
-    "lastUpdated": "2026.05.08 15:07 (KST)"
+    "pageTitle": "대시보드"
   },
   "notice": {
     "title": "확인해 주세요",
     "messages": [
-      "대시보드에서는 서비스 내에서 판매되고 있는 서비스 이용 정보를 데이터로 제공하고 있습니다.",
-      "페이지 접속 시간 기준의 통계 데이터를 집계하고 있어 최신 데이터로 업데이트를 원하시면, 새로고침 을 활용해 주세요."
+      "대시보드에서는 서비스 내에서 판매되고 있는 **서비스 이용 정보를 데이터로 제공**하고 있습니다.",
+      "페이지 접속 시간 기준의 통계 데이터를 집계하고 있어 최신 데이터로 업데이트를 원하시면, **새로고침** 을 활용해 주세요."
     ]
   },
   "filter": {
@@ -29,7 +28,7 @@
       { "id": "MONTHLY", "label": "월별" }
     ],
     "startDate": "2026.07.01",
-    "endDate": "2026.07.10"
+    "endDate": "2026.07.14"
   },
   "topSummary": {
     "targetMonth": "7월",
@@ -62,53 +61,127 @@
       }
     ]
   },
-  "repurchaseRate": {
+"repurchaseRate": {
     "widgetType": "DONUT",
     "title": "회기 재구매율",
     "startDate": "2026-07-01",
     "endDate": "2026-07-14",
-    "infoTooltipText": "선택한 기간 동안 이전 구매 이력이 있는 고객의 재구매 비율입니다.",
+    "infoTooltipText": "회기 재구매율과 이용 유형별 현황을 확인할 수 있습니다.",
     "summary": {
       "label": "전체 재구매율",
-      "rate": 70.0,
+      "rate": 68.0,
       "comparisonLabel": "전월 대비",
-      "trend": { "direction": "UP", "value": 11 }
+      "trend": { "direction": "UP", "value": 8.5 }
     },
     "chartData": [
       {
         "id": "ONLINE",
         "label": "온라인",
-        "percentage": 45,
-        "userCount": 90,
+        "percentage": 40,
+        "userCount": 120,
         "colorCode": "#1877F2",
         "tooltipDetails": [
-          { "label": "1개월 이내", "count": 42, "unit": "건" },
-          { "label": "3개월 이내", "count": 32, "unit": "건" },
-          { "label": "1년 이내", "count": 26, "unit": "건" }
+          { "label": "1개월 이내", "count": 50, "unit": "건" },
+          { "label": "3개월 이내", "count": 45, "unit": "건" },
+          { "label": "1년 이내", "count": 25, "unit": "건" }
         ]
       },
       {
         "id": "OFFLINE",
         "label": "오프라인",
         "percentage": 35,
-        "userCount": 70,
+        "userCount": 105,
         "colorCode": "#28249C"
       },
       {
         "id": "UNPURCHASED",
         "label": "미구매",
-        "percentage": 20,
-        "userCount": 40,
+        "percentage": 25,
+        "userCount": 75,
         "colorCode": "#BDBDBD"
       }
-    ]
+    ],
+    "segments": {
+      "B2B": {
+        "summary": {
+          "label": "B2B 재구매율",
+          "rate": 82.5,
+          "comparisonLabel": "전월 대비",
+          "trend": { "direction": "UP", "value": 14.2 }
+        },
+        "chartData": [
+          {
+            "id": "ONLINE",
+            "label": "온라인",
+            "percentage": 30,
+            "userCount": 45,
+            "colorCode": "#1877F2",
+            "tooltipDetails": [
+              { "label": "1개월 이내", "count": 20, "unit": "건" },
+              { "label": "3개월 이내", "count": 15, "unit": "건" },
+              { "label": "1년 이내", "count": 10, "unit": "건" }
+            ]
+          },
+          {
+            "id": "OFFLINE",
+            "label": "오프라인",
+            "percentage": 55,
+            "userCount": 82,
+            "colorCode": "#28249C"
+          },
+          {
+            "id": "UNPURCHASED",
+            "label": "미구매",
+            "percentage": 15,
+            "userCount": 23,
+            "colorCode": "#BDBDBD"
+          }
+        ]
+      },
+      "B2C": {
+        "summary": {
+          "label": "B2C 재구매율",
+          "rate": 58.0,
+          "comparisonLabel": "전월 대비",
+          "trend": { "direction": "UP", "value": 4.2 }
+        },
+        "chartData": [
+          {
+            "id": "ONLINE",
+            "label": "온라인",
+            "percentage": 52,
+            "userCount": 78,
+            "colorCode": "#1877F2",
+            "tooltipDetails": [
+              { "label": "1개월 이내", "count": 32, "unit": "건" },
+              { "label": "3개월 이내", "count": 28, "unit": "건" },
+              { "label": "1년 이내", "count": 18, "unit": "건" }
+            ]
+          },
+          {
+            "id": "OFFLINE",
+            "label": "오프라인",
+            "percentage": 22,
+            "userCount": 33,
+            "colorCode": "#28249C"
+          },
+          {
+            "id": "UNPURCHASED",
+            "label": "미구매",
+            "percentage": 26,
+            "userCount": 39,
+            "colorCode": "#BDBDBD"
+          }
+        ]
+      }
+    }
   },
   "reservationRate": {
     "widgetType": "LINE",
     "title": "예약 증감율",
     "startDate": "2026-07-01",
     "endDate": "2026-07-14",
-    "infoTooltipText": "월별 총 예약 건수 및 기존/신규 고객 예약 추이를 나타냅니다.",
+    "infoTooltipText": "기간별 예약 증감과 예약 유형별 건수를 확인할 수 있습니다.",
     "unit": "건",
     "referenceLine": {
       "label": "목표선",
@@ -144,7 +217,7 @@
     "title": "월별 매출 현황",
     "startDate": "2026-07-01",
     "endDate": "2026-07-14",
-    "infoTooltipText": "월별 총 매출, 신규 매출 및 환불·취소 금액 현황입니다.",
+    "infoTooltipText": "월별 매출 추이와 매출 유형별 금액을 확인할 수 있습니다.",
     "unit": "만원",
     "seriesConfigs": [
       { "id": "total", "label": "총 매출", "colorCode": "#28249C" },
@@ -166,7 +239,7 @@
     "title": "전문가 오더건수",
     "startDate": "2026-07-01",
     "endDate": "2026-07-14",
-    "infoTooltipText": "전문가별 담당 상담 건수, 전체 대비 비중 및 전월 대비 증감율입니다.",
+    "infoTooltipText": "전문가별 예약 건수와 업무량을 확인할 수 있습니다.",
     "hasNameMaskingToggle": true,
     "categories": [
       { "id": "ALL", "label": "전체" },
@@ -197,7 +270,7 @@
     "title": "직원별 문의 응대 현황",
     "startDate": "2026-07-01",
     "endDate": "2026-07-14",
-    "infoTooltipText": "직원별 문의 응대 건수, 근무/휴무 상태 및 센터 평균 대비 변동 건수입니다.",
+    "infoTooltipText": "직원별 문의 응대 건수와 업무 분배를 확인할 수 있습니다.",
     "hasOffEmployeeToggle": true,
     "averageCount": 128,
     "unit": "건",
@@ -218,7 +291,7 @@
     "title": "오프라인 데스크 예약 전환율",
     "startDate": "2026-07-01",
     "endDate": "2026-07-14",
-    "infoTooltipText": "오프라인 데스크 전체 문의 건수 대비 최종 예약으로 전환된 비율입니다.",
+    "infoTooltipText": "문의 대비 예약 전환 비율을 확인할 수 있습니다.",
     "conversionRate": 72.1,
     "comparisonLabel": "전월 대비",
     "trend": { "direction": "UP", "value": 11 },
@@ -231,7 +304,7 @@
     "title": "전문가 연계율",
     "startDate": "2026-07-01",
     "endDate": "2026-07-14",
-    "infoTooltipText": "본사 예약 인입 건수 대비 전문가 연결(예약 수락)이 완료된 비율의 월별 추이입니다.",
+    "infoTooltipText": "본사 예약 배정 현황을 확인할 수 있습니다.",
     "unit": "%",
     "colorCode": "#006666",
     "chartData": [

@@ -5,13 +5,15 @@ interface WidgetProps {
   className?: string;
 }
 
-export function Widget({
-  children,
-  className = '',
-}: WidgetProps) {
+export function Widget({ children, className = '' }: WidgetProps) {
   return (
     <section
-      className={`rounded-[14px] border border-[#E5E5E5] bg-white p-4 ${className}`}
+      className={`
+        flex flex-col items-start gap-3 
+        p-3 shrink-0 self-stretch 
+        rounded-[15px] border border-neutral-200 bg-white
+        ${className}
+      `.trim()}
     >
       {children}
     </section>

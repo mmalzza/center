@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 
 import { User } from '@/types/user';
 
-import styles from './Sidebar.module.css';
 import Link from 'next/link';
 
 interface SidebarProps {
@@ -110,14 +109,18 @@ export function Sidebar({ user }: SidebarProps) {
 
   return (
     <aside
-      className={`${styles.sidebar} ${
-        !isOpen ? styles.collapsed : ''
+      className={`flex h-full min-h-0 shrink-0 flex-col items-center gap-1 border-r border-[#e1e4e8] bg-[#fafbfc] p-3 [transition:width_0.2s_ease] ${
+        isOpen ? 'w-[188px]' : 'w-[72px]'
       }`}
     >
       {/* 인사말 */}
-      <div className={styles.greeting}>
+      <div
+        className={`flex h-16 shrink-0 items-center gap-2 self-stretch rounded-lg text-sm font-normal ${
+          isOpen ? 'px-2 py-2.5' : 'justify-center p-2.5'
+        }`}
+      >
         {isOpen && (
-          <p className={styles.greetingText}>
+          <p>
             안녕하세요,
             <br />
             {user.name}님!
@@ -126,7 +129,7 @@ export function Sidebar({ user }: SidebarProps) {
 
         <button
           type="button"
-          className={styles.collapseButton}
+          className="flex h-8 w-8 items-center justify-center rounded-lg border-0 bg-[#eef0f2] p-2"
           onClick={handleToggle}
           aria-label={
             isOpen
@@ -144,28 +147,28 @@ export function Sidebar({ user }: SidebarProps) {
       </div>
 
       {/* 빠른 액션 */}
-      <div className={styles.quickActions}>
+      <div className="flex w-full flex-col gap-1.5 pb-2">
         {quickActions.map((action) => (
           <button
             key={action.id}
             type="button"
-            className={`${styles.quickAction} ${ //각 버튼의 action.variant 값이 'secondary'인 경우
+            className={`flex h-[42px] w-full cursor-pointer items-center gap-1.5 rounded-[10px] border text-sm font-bold text-[#4E5760] shadow-[0_0_8px_rgba(55,61,68,0.08)] ${
               action.variant === 'secondary'
-                ? styles.quickActionSecondary
-                : ''
-            }`}
-            onClick={() => router.push(action.href)} 
+                ? 'border-[#e1e4e8] bg-white'
+                : 'border-[#70dcdc] bg-[#d4f8f8]'
+            } ${isOpen ? 'py-2.5 pr-3 pl-4' : 'justify-center p-2.5'}`}
+            onClick={() => router.push(action.href)}
             aria-label={action.count !== undefined ? `${action.label} (${action.count})` : action.label}
             title={!isOpen ? action.label : undefined}
           >
             {isOpen && ( // 사이드바 상태에 따라서
-              <span className={styles.quickActionLabel}>
+              <span className="flex-1 text-left leading-[160%]">
                 {action.label}
 
                 {action.count !== undefined && (
                   <>
                     {' '}
-                    <span className={styles.waitingCount}>
+                    <span className="text-[#ff3b3b]">
                       ({action.count})
                     </span>
                   </>
@@ -173,7 +176,7 @@ export function Sidebar({ user }: SidebarProps) {
               </span>
             )}
 
-            <span className={styles.quickActionIcon}>
+            <span className="flex h-4 w-4 shrink-0 items-center justify-center">
               <img
                 src={
                   isOpen
@@ -190,7 +193,7 @@ export function Sidebar({ user }: SidebarProps) {
       </div>
 
       {/* 메뉴 */}
-      <nav className={styles.menu}>
+      <nav className="flex w-full min-h-0 flex-1 flex-col gap-1 overflow-y-auto overflow-x-hidden">
         {menuItems.map((item) => {
           const isMessageMenu = item.id === 'message';
 
@@ -203,8 +206,8 @@ export function Sidebar({ user }: SidebarProps) {
               {isMessageMenu ? (
                 <button
                   type="button"
-                  className={`${styles.menuItem} ${
-                    active ? styles.active : ''
+                  className={`flex w-full cursor-pointer items-center gap-2 rounded-lg border-none px-2 py-2.5 no-underline hover:bg-[#f3f4f6] ${
+                    active ? 'bg-[#eef0f2]' : 'bg-transparent'
                   }`}
                   title={!isOpen ? item.label : undefined}
                   aria-label={item.label}
@@ -216,11 +219,11 @@ export function Sidebar({ user }: SidebarProps) {
                     alt=""
                     width={20}
                     height={20}
-                    className={styles.menuIcon}
+                    className="h-5 w-5 shrink-0"
                   />
 
                   {isOpen && (
-                    <span className={styles.menuLabel}>
+                    <span className="whitespace-nowrap text-sm font-bold leading-[160%] text-[#4E5760]">
                       {item.label}
                     </span>
                   )}
@@ -235,15 +238,15 @@ export function Sidebar({ user }: SidebarProps) {
                       alt=""
                       width={20}
                       height={20}
-                      className={styles.menuArrow}
+                      className="ml-auto h-5 w-5 shrink-0"
                     />
                   )}
                 </button>
               ) : (
                 <Link
                   href={item.href}
-                  className={`${styles.menuItem} ${
-                    active ? styles.active : ''
+                  className={`flex w-full cursor-pointer items-center gap-2 rounded-lg border-none px-2 py-2.5 no-underline hover:bg-[#f3f4f6] ${
+                    active ? 'bg-[#eef0f2]' : 'bg-transparent'
                   }`}
                   title={!isOpen ? item.label : undefined}
                   aria-label={item.label}
@@ -254,11 +257,11 @@ export function Sidebar({ user }: SidebarProps) {
                     alt=""
                     width={20}
                     height={20}
-                    className={styles.menuIcon}
+                    className="h-5 w-5 shrink-0"
                   />
 
                   {isOpen && (
-                    <span className={styles.menuLabel}>
+                    <span className="whitespace-nowrap text-sm font-bold leading-[160%] text-[#4E5760]">
                       {item.label}
                     </span>
                   )}
@@ -269,7 +272,7 @@ export function Sidebar({ user }: SidebarProps) {
               {isOpen &&
                 isMessageMenu &&
                 isMessageOpen && (
-                  <div className={styles.subMenu}>
+                  <div className="flex flex-col gap-0.5 pt-0 pr-2 pb-1 pl-9">
                     {messageItems.map((subItem) => {
                     const subActive = isActive(subItem.href);
 
@@ -277,8 +280,8 @@ export function Sidebar({ user }: SidebarProps) {
                       <Link
                         key={subItem.id}
                         href={subItem.href}
-                        className={`${styles.subMenuItem} ${
-                          subActive ? styles.subMenuItemActive : ''
+                        className={`flex min-h-[36px] w-full cursor-pointer items-center rounded-md border-0 px-3 py-2 text-left text-sm font-normal text-[#4e5760] no-underline hover:bg-[#f3f4f6] ${
+                          subActive ? 'bg-[#eef0f2]' : 'bg-transparent'
                         }`}
                       >
                         {subItem.label}

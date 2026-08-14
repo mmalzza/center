@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import type {
   ExpertOrdersWidgetData,
 } from '@/types/dashboard';
@@ -5,31 +7,63 @@ import type {
 import { Widget } from '../common/Widget';
 import { WidgetHeader } from '../common/WidgetHeader';
 import { Trend } from '../common/Trend';
+import { ChartLegend } from '../common/ChartLegend';
 
 interface ExpertOrdersWidgetProps {
   data: ExpertOrdersWidgetData;
 }
 
+function maskExpertName(name: string) {
+  const [surname, ...rest] = name;
+
+  return surname + 'ㅇ'.repeat(rest.length);
+}
+
 export function ExpertOrdersWidget({
   data,
 }: ExpertOrdersWidgetProps) {
+  const defaultCategoryId = data.categories[0]?.id;
+
+  const [selectedCategoryId, setSelectedCategoryId] = useState(
+    defaultCategoryId,
+  );
+  const [isNameMasked, setIsNameMasked] = useState(false);
+
+  const categoryFilteredData =
+    selectedCategoryId === defaultCategoryId
+      ? data.chartData
+      : data.chartData.filter(
+          (expert) =>
+            expert.category ===
+            data.categories.find(
+              (category) => category.id === selectedCategoryId,
+            )?.label,
+        );
+
   const maxOrderCount = Math.max(
-    ...data.chartData.map(
+    1,
+    ...categoryFilteredData.map(
       (item) => item.orderCount,
     ),
   );
 
   return (
     <Widget className="mb-4">
-      <div className="flex items-start justify-between">
-        <WidgetHeader widget={data} />
+      <div className="mb-4 flex w-full items-center justify-between">
+        <div className="[&>div]:mb-0">
+          <WidgetHeader widget={data} />
+        </div>
 
         {data.hasNameMaskingToggle && (
-          <label className="flex items-center gap-2 text-[10px] text-gray-500">
+          <label className="flex items-center gap-2 text-[12px] text-neutral-500">
             성명 숨김
             <input
               type="checkbox"
-              className="h-3.5 w-3.5 accent-[#008B8B]"
+              checked={isNameMasked}
+              onChange={(event) =>
+                setIsNameMasked(event.target.checked)
+              }
+              className="h-3.5 w-3.5 accent-primary-500"
             />
           </label>
         )}
@@ -37,13 +71,14 @@ export function ExpertOrdersWidget({
 
       <div className="mb-5 flex gap-1.5 overflow-x-auto">
         {data.categories.map(
-          (category, index) => (
+          (category) => (
             <button
               key={category.id}
-              className={`whitespace-nowrap rounded-full px-3 py-1.5 text-[10px] ${
-                index === 0
-                  ? 'bg-[#008B8B] font-semibold text-white'
-                  : 'border border-gray-200 bg-white text-gray-500'
+              onClick={() => setSelectedCategoryId(category.id)}
+              className={`whitespace-nowrap rounded-button px-3 py-1.5 font-semibold text-[14px] ${
+                category.id === selectedCategoryId
+                  ? 'bg-primary-500 font-semibold text-white'
+                  : 'border border-neutral-200 bg-white text-neutral-500'
               }`}
             >
               {category.label}
@@ -52,32 +87,34 @@ export function ExpertOrdersWidget({
         )}
       </div>
 
-      <div className="space-y-4">
-        {data.chartData.map((expert) => (
+      <div className="h-[184px] w-full space-y-4 overflow-hidden">
+        {categoryFilteredData.map((expert) => (
           <div
             key={expert.rank}
             className="grid grid-cols-[30px_170px_1fr_60px_1fr_55px] items-center gap-2"
           >
-            <span className="text-center text-[11px] font-semibold text-gray-500">
+            <span className="text-center text-[16px] font-semibold text-neutral-500">
               {expert.rank}
             </span>
 
             <div className="flex items-center gap-2">
-              <span className="text-[11px] font-semibold text-gray-700">
-                {expert.expertName}
+              <span className="text-[16px] font-semibold text-neutral-900">
+                {isNameMasked
+                  ? maskExpertName(expert.expertName)
+                  : expert.expertName}
               </span>
 
-              <span className="truncate text-[9px] text-gray-400">
+              <span className="truncate text-[12px] text-neutral-500">
                 {expert.category}
               </span>
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="w-[35px] text-[11px] font-semibold">
+              <span className="w-[35px] text-[16px] font-semibold text-neutral-900">
                 {expert.orderCount}건
               </span>
 
-              <div className="h-[4px] flex-1 overflow-hidden rounded-full bg-gray-200">
+              <div className="h-[4px] flex-1 overflow-hidden rounded-full bg-neutral-200">
                 <div
                   className="h-full rounded-full bg-[#28249C]"
                   style={{
@@ -91,11 +128,11 @@ export function ExpertOrdersWidget({
               </div>
             </div>
 
-            <span className="text-right text-[11px] font-semibold text-gray-700">
+            <span className="text-right text-[16px] font-semibold text-neutral-700">
               {expert.sharePercentage}%
             </span>
 
-            <div className="h-[4px] overflow-hidden rounded-full bg-gray-200">
+            <div className="h-[4px] overflow-hidden rounded-full bg-neutral-200">
               <div
                 className="h-full rounded-full bg-[#1877F2]"
                 style={{
@@ -119,19 +156,7 @@ export function ExpertOrdersWidget({
         ))}
       </div>
 
-      <div className="mt-5 flex justify-end gap-4 text-[10px] text-gray-500">
-        <span className="flex items-center gap-1">
-          <span className="h-2 w-2 rounded-full bg-[#28249C]" />
-          상담 건수
-        </span>
-
-        <span className="flex items-center gap-1">
-          <span className="h-2 w-2 rounded-full bg-[#1877F2]" />
-          상담 비중
-        </span>
-
-        <span>▲ 전월대비 증감율</span>
-      </div>
+      <ChartLegend items={data.seriesConfigs} align="right" />
     </Widget>
   );
 }

@@ -7,25 +7,25 @@ interface WidgetHeaderProps {
   >;
 }
 
-export function WidgetHeader({
-  widget,
-}: WidgetHeaderProps) {
+export function WidgetHeader({ widget }: WidgetHeaderProps) {
   return (
     <div className="mb-4 flex items-center gap-1">
-      <h3 className="text-[15px] font-bold text-[#333]">
+      <h3 className="text-[20px] font-bold text-neutral-900">
         {widget.title}
       </h3>
 
-      <span className="text-[11px] font-medium text-gray-500">
+      <span className="text-body font-semibold text-neutral-700">
         ({widget.startDate} ~ {widget.endDate})
       </span>
 
-      <div className="group relative ml-0.5">
-        <span className="flex h-[15px] w-[15px] items-center justify-center rounded-full border border-gray-400 text-[10px] font-semibold text-gray-500">
-          i
-        </span>
+      <div className="group relative ml-0.5 flex items-center">
+        <img
+          src="/icons/info.svg"
+          alt="정보 안내"
+          className="h-6 w-6 cursor-pointer"
+        />
 
-        <div className="pointer-events-none absolute left-1/2 top-6 z-50 hidden w-[250px] -translate-x-1/2 rounded-lg bg-gray-800 px-3 py-2 text-[11px] leading-5 text-white shadow-lg group-hover:block">
+        <div className="pointer-events-none absolute left-1/2 top-6 z-50 hidden w-[250px] -translate-x-1/2 rounded-input bg-neutral-900 px-3 py-2 text-[11px] leading-5 text-white shadow-lg group-hover:block">
           {widget.infoTooltipText}
         </div>
       </div>

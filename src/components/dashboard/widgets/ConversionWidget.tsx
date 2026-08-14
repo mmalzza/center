@@ -17,19 +17,15 @@ export function ConversionWidget({
     <Widget>
       <WidgetHeader widget={data} />
 
-      <div className="flex h-[250px] flex-col items-center justify-center">
+      <div className="flex h-[296px] w-full flex-col items-center justify-center">
         <div className="flex items-end gap-1">
-          <strong className="text-[42px] font-bold leading-none text-[#008B8B]">
-            {data.conversionRate}
+          <strong className="text-[48px] font-bold leading-none text-primary-500">
+            {data.conversionRate}%
           </strong>
-
-          <span className="mb-1 text-[20px] font-bold text-[#008B8B]">
-            %
-          </span>
         </div>
 
         <div className="mt-2 flex items-center gap-1">
-          <span className="text-[10px] text-gray-400">
+          <span className="text-[12px] text-neutral-500">
             {data.comparisonLabel}
           </span>
 
@@ -42,7 +38,7 @@ export function ConversionWidget({
         </div>
 
         <div className="mt-6 w-full">
-          <div className="h-[22px] overflow-hidden rounded-full bg-[#F0F2F4]">
+          <div className="h-[22px] overflow-hidden rounded-full bg-neutral-50">
             <div
               className="h-full rounded-r-full"
               style={{
@@ -52,7 +48,7 @@ export function ConversionWidget({
             />
           </div>
 
-          <div className="mt-2 flex justify-between text-[11px]">
+          <div className="mt-2 flex justify-between text-[16px]">
             <span
               className="font-semibold"
               style={{
@@ -64,7 +60,7 @@ export function ConversionWidget({
               {data.numerator.unit}
             </span>
 
-            <span className="font-semibold text-gray-500">
+            <span className="font-semibold text-neutral-500">
               {data.denominator.label}{' '}
               {data.denominator.value}
               {data.denominator.unit}

@@ -2,26 +2,40 @@ import type { DashboardHeaderInfo } from '@/types/dashboard';
 
 interface DashboardHeaderProps {
   data: DashboardHeaderInfo;
+  lastUpdated: string;
+  onRefresh?: () => void;
 }
 
 export function DashboardHeader({
   data,
+  lastUpdated,
+  onRefresh,
 }: DashboardHeaderProps) {
   return (
-    <div className="mb-4 flex items-center justify-between">
-      <div>
-        <h1 className="text-[20px] font-bold text-[#333]">
-          {data.pageTitle}
-        </h1>
+    <header className="mb-4 flex w-full items-center justify-between">
+      <h1 className="text-[24px] font-bold text-neutral-900">
+        {data.pageTitle}
+      </h1>
 
-        <p className="mt-1 text-[11px] text-gray-400">
-          마지막 업데이트: {data.lastUpdated}
-        </p>
+      <div className="flex items-center gap-[16px]">
+        <span className="text-body font-regular leading-none text-neutral-300">
+          마지막 업데이트: {lastUpdated}
+        </span>
+
+        <button
+          type="button"
+          onClick={onRefresh}
+          className="flex h-[32px] items-center justify-center gap-[4px] rounded-button border-2 border-primary-500 bg-white px-[12px] py-[6px] text-[14px] font-bold text-primary-500 transition hover:bg-neutral-50"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/icons/replay.svg"
+            alt="새로고침"
+            className="h-4 w-4"
+          />
+          <span>새로고침</span>
+        </button>
       </div>
-
-      <button className="rounded-lg border border-[#008B8B] bg-white px-4 py-2 text-[12px] font-semibold text-[#008B8B] transition hover:bg-[#008B8B] hover:text-white">
-        ↻ 새로고침
-      </button>
-    </div>
+    </header>
   );
 }

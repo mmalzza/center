@@ -7,7 +7,7 @@ interface ChartLegendProps {
 
 export function ChartLegend({
   items,
-  align = 'center',
+  align = 'right',
 }: ChartLegendProps) {
   const alignment = {
     left: 'justify-start',
@@ -16,21 +16,16 @@ export function ChartLegend({
   };
 
   return (
-    <div
-      className={`flex gap-4 ${alignment[align]}`}
-    >
+    <div className={`flex items-center gap-2 self-stretch ${alignment[align]}`}>
       {items.map((item) => (
         <span
           key={item.id}
-          className="flex items-center gap-1 text-[10px] text-gray-500"
+          className="flex items-center gap-1.5 text-[12px] font-medium text-neutral-700"
         >
           <span
             className="h-2 w-2 rounded-full"
-            style={{
-              backgroundColor: item.colorCode,
-            }}
+            style={{ backgroundColor: item.colorCode }}
           />
-
           {item.label}
         </span>
       ))}

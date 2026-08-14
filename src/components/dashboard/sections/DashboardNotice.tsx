@@ -4,20 +4,34 @@ interface DashboardNoticeProps {
   data: DashboardNoticeInfo;
 }
 
-export function DashboardNotice({
-  data,
-}: DashboardNoticeProps) {
+function renderFormattedMessage(text: string) {
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+
+  return parts.map((part, index) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      const boldText = part.slice(2, -2);
+      return (
+        <span key={index} className="font-semibold text-neutral-500">
+          {boldText}
+        </span>
+      );
+    }
+    return part;
+  });
+}
+
+export function DashboardNotice({ data }: DashboardNoticeProps) {
   return (
-    <section className="mb-4 rounded-[14px] bg-[#D7F7F7] px-5 py-4">
-      <h2 className="mb-2 text-[14px] font-bold text-[#008080]">
+    <section className="mb-4 flex min-h-[140px] w-full flex-col items-start gap-[10px] rounded-[16px] bg-primary-10 px-[32px] py-[24px]">
+      <h2 className="text-[21px] font-bold leading-normal text-primary-600">
         💡 {data.title}
       </h2>
 
-      <ul className="space-y-1 text-[11px] leading-5 text-[#6C8585]">
-        {data.messages.map((message) => (
-          <li key={message} className="flex gap-1.5">
+      <ul className="space-y-1 text-[17px] leading-5 text-neutral-500">
+        {data.messages.map((message, index) => (
+          <li key={index} className="flex gap-[6px]">
             <span>•</span>
-            <span>{message}</span>
+            <span>{renderFormattedMessage(message)}</span>
           </li>
         ))}
       </ul>

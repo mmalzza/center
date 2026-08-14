@@ -40,7 +40,6 @@ export interface BaseWidget {
 
 export interface DashboardHeaderInfo {
   pageTitle: string;
-  lastUpdated: string;
 }
 
 export interface DashboardNoticeInfo {
@@ -110,10 +109,19 @@ export interface KpiSummary {
   trend: TrendInfo;
 }
 
-export interface RepurchaseWidgetData extends BaseWidget {
-  widgetType: 'DONUT';
+export interface RepurchaseSegmentData {
   summary: KpiSummary;
   chartData: DonutChartSegment[];
+}
+
+export interface RepurchaseWidgetData extends BaseWidget {
+  widgetType: 'DONUT';
+  summary: KpiSummary; // 전체
+  chartData: DonutChartSegment[]; // 전체
+  segments?: {
+    B2B: RepurchaseSegmentData;
+    B2C: RepurchaseSegmentData;
+  };
 }
 
 // 3-2. 라인 차트 위젯 (예약 증감율)

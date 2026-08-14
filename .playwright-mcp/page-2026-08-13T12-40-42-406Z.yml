@@ -1,0 +1,318 @@
+- generic [ref=f3e3]:
+  - banner [ref=f3e4]:
+    - generic [ref=f3e5]:
+      - img "MINDCAFE" [ref=f3e6]
+      - img "MINDCAFE" [ref=f3e7]
+    - navigation [ref=f3e8]:
+      - link "센터콘솔" [ref=f3e9] [cursor=pointer]:
+        - /url: /
+      - link "어드민콘솔" [ref=f3e10] [cursor=pointer]:
+        - /url: /admin
+      - link "전문가콘솔" [ref=f3e11] [cursor=pointer]:
+        - /url: /expert
+    - generic [ref=f3e12]:
+      - generic [ref=f3e13]: 마인드카페점
+      - button "로그아웃" [ref=f3e15] [cursor=pointer]
+  - generic [ref=f3e16]:
+    - complementary [ref=f3e17]:
+      - generic [ref=f3e18]:
+        - paragraph [ref=f3e19]: 안녕하세요,마인드카페 매니저님!
+        - button "사이드바 접기" [ref=f3e20] [cursor=pointer]
+      - generic [ref=f3e21]:
+        - button "예약하기" [ref=f3e22] [cursor=pointer]
+        - button "내담자 등록하기" [ref=f3e25] [cursor=pointer]
+        - button "대기예약 (8)" [ref=f3e28] [cursor=pointer]:
+          - generic [ref=f3e29]:
+            - text: 대기예약
+            - generic [ref=f3e30]: (8)
+      - navigation [ref=f3e32]:
+        - link "홈" [ref=f3e34] [cursor=pointer]:
+          - /url: /home
+        - link "예약 일정" [ref=f3e37] [cursor=pointer]:
+          - /url: /reservations
+        - link "상담방" [ref=f3e40] [cursor=pointer]:
+          - /url: /counselings
+        - link "내담자 관리" [ref=f3e43] [cursor=pointer]:
+          - /url: /clients
+        - link "문서" [ref=f3e46] [cursor=pointer]:
+          - /url: /documents
+        - button "메시지" [ref=f3e49] [cursor=pointer]
+        - link "통화 이력" [ref=f3e52] [cursor=pointer]:
+          - /url: /calls
+        - link "전문가" [ref=f3e55] [cursor=pointer]:
+          - /url: /experts
+        - link "상품" [ref=f3e58] [cursor=pointer]:
+          - /url: /products
+        - link "판매" [ref=f3e61] [cursor=pointer]:
+          - /url: /sales
+        - link "후기" [ref=f3e64] [cursor=pointer]:
+          - /url: /reviews
+        - link "이용 기록" [ref=f3e67] [cursor=pointer]:
+          - /url: /history
+        - link "대시보드" [ref=f3e70] [cursor=pointer]:
+          - /url: /
+        - link "설정" [ref=f3e73] [cursor=pointer]:
+          - /url: /settings
+    - main [ref=f3e75]:
+      - main [ref=f3e76]:
+        - generic [ref=f3e77]:
+          - heading "대시보드" [level=1] [ref=f3e78]
+          - generic [ref=f3e79]:
+            - generic [ref=f3e80]: "마지막 업데이트: 2026.05.08 15:07 (KST)"
+            - button "새로고침 새로고침" [ref=f3e81] [cursor=pointer]:
+              - img "새로고침" [ref=f3e82]
+              - generic [ref=f3e83]: 새로고침
+        - generic [ref=f3e84]:
+          - heading "💡 확인해 주세요" [level=2] [ref=f3e85]
+          - list [ref=f3e86]:
+            - listitem [ref=f3e87]:
+              - generic [ref=f3e88]: •
+              - generic [ref=f3e89]: 대시보드에서는 서비스 내에서 판매되고 있는 서비스 이용 정보를 데이터로 제공하고 있습니다.
+            - listitem [ref=f3e90]:
+              - generic [ref=f3e91]: •
+              - generic [ref=f3e92]: 페이지 접속 시간 기준의 통계 데이터를 집계하고 있어 최신 데이터로 업데이트를 원하시면, 새로고침 을 활용해 주세요.
+        - generic [ref=f3e93]:
+          - generic [ref=f3e94]:
+            - generic [ref=f3e95]:
+              - button "이번 달" [ref=f3e96] [cursor=pointer]
+              - button "오늘" [ref=f3e97] [cursor=pointer]
+              - button "어제" [ref=f3e98] [cursor=pointer]
+              - button "30일" [ref=f3e99] [cursor=pointer]
+              - button "90일" [ref=f3e100] [cursor=pointer]
+              - button "180일" [ref=f3e101] [cursor=pointer]
+              - button "365일" [ref=f3e102] [cursor=pointer]
+            - generic [ref=f3e103]: 맞춤 설정
+            - combobox [ref=f3e105]:
+              - option "일별"
+              - option "주별"
+              - option "월별" [selected]
+          - generic [ref=f3e106]:
+            - generic [ref=f3e107]: "조회 기간: 2026.07.01 ~ 2026.07.14"
+            - button "조회" [ref=f3e108] [cursor=pointer]
+        - generic [ref=f3e109]:
+          - generic [ref=f3e110]: 7월
+          - generic [ref=f3e112]:
+            - generic [ref=f3e113]:
+              - paragraph [ref=f3e114]: 7월 이용
+              - generic [ref=f3e115]:
+                - strong [ref=f3e116]: "248"
+                - generic [ref=f3e117]: 건
+                - generic [ref=f3e118]: / 누적 1,248건
+              - generic [ref=f3e119]:
+                - generic [ref=f3e120]: 지난달 대비
+                - generic [ref=f3e121]:
+                  - img "상승" [ref=f3e122]
+                  - text: 12.3%
+            - generic [ref=f3e123]:
+              - paragraph [ref=f3e124]: 7월 이용자
+              - generic [ref=f3e125]:
+                - strong [ref=f3e126]: "183"
+                - generic [ref=f3e127]: 명
+                - generic [ref=f3e128]: / 누적 300명
+              - generic [ref=f3e129]:
+                - generic [ref=f3e130]: 지난달 대비
+                - generic [ref=f3e131]:
+                  - img "상승" [ref=f3e132]
+                  - text: 8.7%
+            - generic [ref=f3e133]:
+              - paragraph [ref=f3e134]: 인당 평균
+              - generic [ref=f3e135]:
+                - strong [ref=f3e136]: "1.4"
+                - generic [ref=f3e137]: 회
+              - generic [ref=f3e138]:
+                - generic [ref=f3e139]: 지난달 대비
+                - generic [ref=f3e140]:
+                  - img "상승" [ref=f3e141]
+                  - text: 0.3회
+        - generic [ref=f3e142]:
+          - generic [ref=f3e143]:
+            - generic [ref=f3e144]:
+              - generic [ref=f3e145]:
+                - heading "회기 재구매율" [level=3] [ref=f3e146]
+                - generic [ref=f3e147]: (2026-07-01 ~ 2026-07-14)
+                - img "정보 안내" [ref=f3e149] [cursor=pointer]
+              - generic [ref=f3e150]:
+                - button "전체" [ref=f3e151] [cursor=pointer]
+                - button "B2C" [ref=f3e152] [cursor=pointer]
+                - button "B2B" [ref=f3e153] [cursor=pointer]
+            - generic [ref=f3e155]:
+              - generic [ref=f3e156]: 전체 재구매율
+              - strong [ref=f3e157]: 68.0%
+              - generic [ref=f3e158]:
+                - generic [ref=f3e159]: 전월 대비
+                - generic [ref=f3e160]:
+                  - img "상승" [ref=f3e161]
+                  - text: 8.5%
+            - generic [ref=f3e164]:
+              - generic [ref=f3e165]: 온라인
+              - generic [ref=f3e167]: 오프라인
+              - generic [ref=f3e169]: 미구매
+          - generic [ref=f3e171]:
+            - generic [ref=f3e172]:
+              - heading "예약 증감율" [level=3] [ref=f3e173]
+              - generic [ref=f3e174]: (2026-07-01 ~ 2026-07-14)
+              - img "정보 안내" [ref=f3e176] [cursor=pointer]
+            - generic [ref=f3e180]:
+              - generic [ref=f3e181]: 총 예약
+              - generic [ref=f3e183]: 기존 예약
+              - generic [ref=f3e185]: 신규 예약
+        - generic [ref=f3e187]:
+          - generic [ref=f3e188]:
+            - heading "월별 매출 현황" [level=3] [ref=f3e189]
+            - generic [ref=f3e190]: (2026-07-01 ~ 2026-07-14)
+            - img "정보 안내" [ref=f3e192] [cursor=pointer]
+          - generic [ref=f3e195]:
+            - generic [ref=f3e196]: 총 매출
+            - generic [ref=f3e198]: 신규 매출
+            - generic [ref=f3e200]: 환불·취소
+        - generic [ref=f3e202]:
+          - generic [ref=f3e203]:
+            - generic [ref=f3e204]:
+              - heading "전문가 오더건수" [level=3] [ref=f3e205]
+              - generic [ref=f3e206]: (2026-07-01 ~ 2026-07-14)
+              - img "정보 안내" [ref=f3e208] [cursor=pointer]
+            - generic [ref=f3e209]:
+              - text: 성명 숨김
+              - checkbox "성명 숨김" [ref=f3e210]
+          - generic [ref=f3e211]:
+            - button "전체" [ref=f3e212] [cursor=pointer]
+            - button "심리 상담" [ref=f3e213] [cursor=pointer]
+            - button "심리 치료(아동)" [ref=f3e214] [cursor=pointer]
+            - button "심리 검사" [ref=f3e215] [cursor=pointer]
+            - button "임상 평가" [ref=f3e216] [cursor=pointer]
+            - button "아동 평가" [ref=f3e217] [cursor=pointer]
+            - button "기타" [ref=f3e218] [cursor=pointer]
+            - button "그룹" [ref=f3e219] [cursor=pointer]
+            - button "바우처" [ref=f3e220] [cursor=pointer]
+          - generic [ref=f3e221]:
+            - generic [ref=f3e222]:
+              - generic [ref=f3e223]: "1"
+              - generic [ref=f3e224]:
+                - generic [ref=f3e225]: 김민재
+                - generic [ref=f3e226]: 심리 상담
+              - generic [ref=f3e227]: 48건
+              - generic [ref=f3e231]: 20%
+              - generic [ref=f3e235]:
+                - img "상승" [ref=f3e236]
+                - text: 15%
+            - generic [ref=f3e237]:
+              - generic [ref=f3e238]: "2"
+              - generic [ref=f3e239]:
+                - generic [ref=f3e240]: 이소영
+                - generic [ref=f3e241]: 심리 치료(아동)
+              - generic [ref=f3e242]: 42건
+              - generic [ref=f3e246]: 18%
+              - generic [ref=f3e250]:
+                - img "상승" [ref=f3e251]
+                - text: 8%
+            - generic [ref=f3e252]:
+              - generic [ref=f3e253]: "3"
+              - generic [ref=f3e254]:
+                - generic [ref=f3e255]: 박동현
+                - generic [ref=f3e256]: 임상 평가
+              - generic [ref=f3e257]: 35건
+              - generic [ref=f3e261]: 16%
+              - generic [ref=f3e265]:
+                - img "하락" [ref=f3e266]
+                - text: 12%
+            - generic [ref=f3e267]:
+              - generic [ref=f3e268]: "4"
+              - generic [ref=f3e269]:
+                - generic [ref=f3e270]: 최수지
+                - generic [ref=f3e271]: 심리 검사
+              - generic [ref=f3e272]: 29건
+              - generic [ref=f3e276]: 14%
+              - generic [ref=f3e280]:
+                - img "상승" [ref=f3e281]
+                - text: 5%
+            - generic [ref=f3e282]:
+              - generic [ref=f3e283]: "5"
+              - generic [ref=f3e284]:
+                - generic [ref=f3e285]: 정도현
+                - generic [ref=f3e286]: 심리 상담
+              - generic [ref=f3e287]: 25건
+              - generic [ref=f3e291]: 10%
+              - generic [ref=f3e295]:
+                - img "상승" [ref=f3e296]
+                - text: 2%
+          - generic [ref=f3e297]:
+            - generic [ref=f3e298]: 상담 건수
+            - generic [ref=f3e300]: 상담 비중
+            - generic [ref=f3e302]: ▲ 전월대비 증감율
+        - generic [ref=f3e303]:
+          - generic [ref=f3e304]:
+            - generic [ref=f3e305]:
+              - generic [ref=f3e306]:
+                - heading "직원별 문의 응대 현황" [level=3] [ref=f3e307]
+                - generic [ref=f3e308]: (2026-07-01 ~ 2026-07-14)
+                - img "정보 안내" [ref=f3e310] [cursor=pointer]
+              - generic [ref=f3e311]:
+                - text: 휴무 직원 포함
+                - checkbox "휴무 직원 포함" [checked] [ref=f3e312]
+            - generic [ref=f3e313]:
+              - generic [ref=f3e314]: 센터 평균 문의 응대
+              - strong [ref=f3e315]: 128건
+            - generic [ref=f3e316]:
+              - generic [ref=f3e317]:
+                - generic [ref=f3e319]: 이지연
+                - generic [ref=f3e320]: 142건
+                - generic [ref=f3e324]:
+                  - img "상승" [ref=f3e325]
+                  - text: 14건
+              - generic [ref=f3e326]:
+                - generic [ref=f3e328]: 최원우
+                - generic [ref=f3e329]: 128건
+                - generic [ref=f3e332]: —
+              - generic [ref=f3e333]:
+                - generic [ref=f3e335]: 정다은
+                - generic [ref=f3e336]: 115건
+                - generic [ref=f3e340]:
+                  - img "하락" [ref=f3e341]
+                  - text: 10건
+              - generic [ref=f3e342]:
+                - generic [ref=f3e344]: 김민수
+                - generic [ref=f3e345]: 98건
+                - generic [ref=f3e349]:
+                  - img "하락" [ref=f3e350]
+                  - text: 30건
+              - generic [ref=f3e351]:
+                - generic [ref=f3e353]: 박소연
+                - generic [ref=f3e354]: 82건
+                - generic [ref=f3e358]:
+                  - img "하락" [ref=f3e359]
+                  - text: 46건
+            - generic [ref=f3e360]:
+              - generic [ref=f3e361]: 근무
+              - generic [ref=f3e363]: 휴무
+          - generic [ref=f3e365]:
+            - generic [ref=f3e366]:
+              - heading "오프라인 데스크 예약 전환율" [level=3] [ref=f3e367]
+              - generic [ref=f3e368]: (2026-07-01 ~ 2026-07-14)
+              - img "정보 안내" [ref=f3e370] [cursor=pointer]
+            - generic [ref=f3e371]:
+              - generic [ref=f3e372]:
+                - strong [ref=f3e373]: "72.1"
+                - generic [ref=f3e374]: "%"
+              - generic [ref=f3e375]:
+                - generic [ref=f3e376]: 전월 대비
+                - generic [ref=f3e377]:
+                  - img "상승" [ref=f3e378]
+                  - text: 11%
+              - generic [ref=f3e382]:
+                - generic [ref=f3e383]: 예약 245건
+                - generic [ref=f3e384]: 전체 문의 340건
+        - generic [ref=f3e385]:
+          - generic [ref=f3e386]:
+            - heading "전문가 연계율" [level=3] [ref=f3e387]
+            - generic [ref=f3e388]: (2026-07-01 ~ 2026-07-14)
+            - img "정보 안내" [ref=f3e390] [cursor=pointer]
+          - generic [ref=f3e391]:
+            - generic [ref=f3e392]:
+              - paragraph [ref=f3e393]: 본사 예약 인입
+              - strong [ref=f3e394]: 140건
+            - generic [ref=f3e395]:
+              - paragraph [ref=f3e396]: 예약 수락
+              - strong [ref=f3e397]: 124건
+            - generic [ref=f3e398]:
+              - paragraph [ref=f3e399]: 연계율
+              - strong [ref=f3e400]: 88.5%

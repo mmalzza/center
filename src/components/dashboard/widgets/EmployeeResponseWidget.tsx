@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import type {
   EmployeeResponseWidgetData,
 } from '@/types/dashboard';
@@ -5,6 +7,7 @@ import type {
 import { Widget } from '../common/Widget';
 import { WidgetHeader } from '../common/WidgetHeader';
 import { Trend } from '../common/Trend';
+import { ChartLegend } from '../common/ChartLegend';
 
 interface EmployeeResponseWidgetProps {
   data: EmployeeResponseWidgetData;
@@ -13,65 +16,77 @@ interface EmployeeResponseWidgetProps {
 export function EmployeeResponseWidget({
   data,
 }: EmployeeResponseWidgetProps) {
+  const [includeOffEmployees, setIncludeOffEmployees] = useState(false);
+
+  const visibleChartData = includeOffEmployees
+    ? data.chartData
+    : data.chartData.filter((employee) => !employee.isOff);
+
   const maxResponseCount = Math.max(
-    ...data.chartData.map(
+    1,
+    ...visibleChartData.map(
       (item) => item.responseCount,
     ),
   );
 
   return (
     <Widget>
-      <div className="flex items-start justify-between">
-        <WidgetHeader widget={data} />
+      <div className="mb-4 flex w-full items-center justify-between">
+        <div className="[&>div]:mb-0">
+          <WidgetHeader widget={data} />
+        </div>
 
         {data.hasOffEmployeeToggle && (
-          <label className="flex items-center gap-2 text-[10px] text-gray-500">
+          <label className="flex items-center gap-2 text-[12px] text-neutral-500">
             휴무 직원 포함
             <input
               type="checkbox"
-              defaultChecked
-              className="h-3.5 w-3.5 accent-[#008B8B]"
+              checked={includeOffEmployees}
+              onChange={(event) =>
+                setIncludeOffEmployees(event.target.checked)
+              }
+              className="h-3.5 w-3.5 accent-primary-500"
             />
           </label>
         )}
       </div>
 
-      <div className="mb-4 flex items-center justify-between rounded-lg bg-[#F3F5F6] px-3 py-2.5">
-        <span className="text-[10px] font-semibold text-gray-500">
+      <div className="mb-4 flex w-full items-center justify-between rounded-input bg-neutral-50 px-3 py-2.5">
+        <span className="text-[16px] font-semibold text-neutral-700">
           센터 평균 문의 응대
         </span>
 
-        <strong className="text-[12px] text-[#008B8B]">
+        <strong className="text-[16px] text-primary-700">
           {data.averageCount}
           {data.unit}
         </strong>
       </div>
 
-      <div className="space-y-4">
-        {data.chartData.map((employee) => (
+      <div className="h-[184px] w-full space-y-4 overflow-hidden">
+        {visibleChartData.map((employee) => (
           <div
             key={employee.id}
-            className="grid grid-cols-[12px_65px_45px_1fr_45px] items-center gap-2"
+            className="grid grid-cols-[12px_65px_45px_1fr_55px] items-center gap-2"
           >
             <span
               className={`h-2 w-2 rounded-full ${
                 employee.isOff
-                  ? 'bg-gray-300'
-                  : 'bg-[#008B8B]'
+                  ? 'bg-neutral-300'
+                  : 'bg-primary-500'
               }`}
             />
 
-            <span className="text-[11px] font-medium text-gray-700">
+            <span className="text-[16px] font-semibold text-neutral-900">
               {employee.employeeName}
             </span>
 
-            <span className="text-[11px] font-semibold text-gray-700">
+            <span className="text-[16px] font-semibold text-neutral-900">
               {employee.responseCount}건
             </span>
 
-            <div className="h-[5px] overflow-hidden rounded-full bg-gray-200">
+            <div className="h-[4px] overflow-hidden rounded-full bg-neutral-200">
               <div
-                className="h-full rounded-full bg-[#008B8B]"
+                className="h-full rounded-full bg-primary-500"
                 style={{
                   width: `${
                     (employee.responseCount /
@@ -95,17 +110,7 @@ export function EmployeeResponseWidget({
         ))}
       </div>
 
-      <div className="mt-5 flex justify-end gap-3 text-[9px] text-gray-400">
-        <span className="flex items-center gap-1">
-          <span className="h-2 w-2 rounded-full bg-[#008B8B]" />
-          근무
-        </span>
-
-        <span className="flex items-center gap-1">
-          <span className="h-2 w-2 rounded-full bg-gray-300" />
-          휴무
-        </span>
-      </div>
+      <ChartLegend items={data.seriesConfigs} align="right" />
     </Widget>
   );
 }
