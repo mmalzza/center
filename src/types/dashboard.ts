@@ -258,3 +258,24 @@ export interface DashboardResponse {
   offlineDeskConversion: ConversionProgressWidgetData;
   expertConnection: ExpertConnectionWidgetData;
 }
+
+// 5. 대시보드 데이터 API (기간/집계 기준에 따라 달라지는 부분만 제공)
+// header/notice/filter는 기간과 무관한 정적 설정이므로 API 응답에서 제외한다.
+
+export type DashboardApiResponse = Pick<
+  DashboardResponse,
+  | 'topSummary'
+  | 'repurchaseRate'
+  | 'reservationRate'
+  | 'monthlySales'
+  | 'expertOrders'
+  | 'employeeResponses'
+  | 'offlineDeskConversion'
+  | 'expertConnection'
+>;
+
+export type DashboardGranularity = 'DAILY' | 'WEEKLY' | 'MONTHLY';
+
+export interface DashboardApiErrorResponse {
+  error: string;
+}

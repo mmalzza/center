@@ -5,23 +5,19 @@ export interface DateRange {
 
 const pad2 = (n: number) => String(n).padStart(2, '0');
 
-// "2026.07.01" -> Date(2026, 6, 1)
 export function parseDotDate(value: string): Date {
   const [y, m, d] = value.split('.').map(Number);
   return new Date(y, m - 1, d);
 }
 
-// Date -> "2026.07.01" (필터 표시 형식)
 export function formatDotDate(date: Date): string {
   return `${date.getFullYear()}.${pad2(date.getMonth() + 1)}.${pad2(date.getDate())}`;
 }
 
-// Date -> "2026-07-01" (위젯 startDate/endDate 형식)
 export function formatDashDate(date: Date): string {
   return `${date.getFullYear()}-${pad2(date.getMonth() + 1)}-${pad2(date.getDate())}`;
 }
 
-// Date -> "2026.07.01 15:07 (KST)" (헤더 마지막 업데이트 표시 형식)
 export function formatLastUpdated(date: Date): string {
   return `${date.getFullYear()}.${pad2(date.getMonth() + 1)}.${pad2(date.getDate())} ${pad2(date.getHours())}:${pad2(date.getMinutes())} (KST)`;
 }

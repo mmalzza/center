@@ -1,30 +1,19 @@
 import { useState } from 'react';
 
-import type { DashboardFilterConfig } from '@/types/dashboard';
-import type { DateRange } from '@/utils/date';
+import { useDashboardFilter } from '@/contexts/DashboardFilterContext';
+import type { DashboardFilterConfig, DashboardGranularity } from '@/types/dashboard';
 import { formatDotDate } from '@/utils/date';
 
 import { DateRangeCalendar } from './DateRangeCalendar';
 
 interface DashboardFilterProps {
   data: DashboardFilterConfig;
-  dateRange: DateRange;
-  selectedPreset: string;
-  onPresetChange: (presetId: string) => void;
-  onRangeApply: (range: DateRange) => void;
 }
 
-export function DashboardFilter({
-  data,
-  dateRange,
-  selectedPreset,
-  onPresetChange,
-  onRangeApply,
-}: DashboardFilterProps) {
+export function DashboardFilter({ data }: DashboardFilterProps) {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-  const [aggregationUnit, setAggregationUnit] = useState(
-    data.selectedAggregationUnit,
-  );
+  const { dateRange, selectedPreset, granularity, setPreset, setRange, setGranularity } =
+    useDashboardFilter();
 
   return (
     <div className="relative mb-4 flex w-full items-center justify-between self-stretch">
@@ -36,7 +25,7 @@ export function DashboardFilter({
             return (
               <button
                 key={option.id}
-                onClick={() => onPresetChange(option.id)}
+                onClick={() => setPreset(option.id)}
                 className={`flex items-center rounded-button px-4 py-2 text-body font-medium transition-colors ${
                   isActive
                     ? 'bg-primary-500 text-white' // 활성화
@@ -64,7 +53,7 @@ export function DashboardFilter({
                 start={dateRange.start}
                 end={dateRange.end}
                 onApply={(range) => {
-                  onRangeApply(range);
+                  setRange(range);
                   setIsCalendarOpen(false);
                 }}
               />
@@ -74,8 +63,8 @@ export function DashboardFilter({
 
         {/* 집계 단위 셀렉트 (일별/주별/월별) */}
         <select
-          value={aggregationUnit}
-          onChange={(e) => setAggregationUnit(e.target.value)}
+          value={granularity}
+          onChange={(e) => setGranularity(e.target.value as DashboardGranularity)}
           className="h-9 rounded-input border border-neutral-500 bg-white px-3 text-body text-neutral-900 outline-none"
         >
           {data.aggregationOptions.map((option) => (

@@ -22,7 +22,7 @@ export function TopSummary({ data }: TopSummaryProps) {
           <div key={metric.id} className="flex flex-col items-center px-6">
             {/* 지표 라벨 */}
             <p className="text-[15px] font-semibold text-neutral-500">
-              {metric.label}
+              {data.targetMonth}
             </p>
 
             {/* 당월 수치 */}

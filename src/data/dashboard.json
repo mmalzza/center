@@ -31,11 +31,11 @@
     "endDate": "2026.07.14"
   },
   "topSummary": {
-    "targetMonth": "7월",
+    "targetMonth": "8월",
     "metrics": [
       {
         "id": "monthly_usage",
-        "label": "7월 이용",
+        "label": "8월 이용",
         "value": 248,
         "unit": "건",
         "accumulatedValue": 1248,
@@ -44,7 +44,7 @@
       },
       {
         "id": "monthly_users",
-        "label": "7월 이용자",
+        "label": "8월 이용자",
         "value": 183,
         "unit": "명",
         "accumulatedValue": 300,
