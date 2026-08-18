@@ -7,6 +7,8 @@ import Link from 'next/link';
 
 interface SidebarProps {
   user: User;
+  isOpen: boolean;
+  onToggle: () => void;
 }
 
 interface QuickAction {
@@ -53,7 +55,7 @@ interface MenuItem {
   hasSubMenu?: boolean;
 }
 
-const menuItems: MenuItem[] = [
+export const menuItems: MenuItem[] = [
   { id: 'home', label: '홈', icon: '/icons/home.svg', href: '/home' },
   { id: 'reservations', label: '예약 일정', icon: '/icons/calendar_today.svg', href: '/reservations' },
   { id: 'counselings', label: '상담방', icon: '/icons/forum.svg', href: '/counselings' },
@@ -77,10 +79,9 @@ const messageItems = [
   { id: 'history', label: '메시지 내역', href: '/messages/history' },
 ];
 
-export function Sidebar({ user }: SidebarProps) {
+export function Sidebar({ user, isOpen, onToggle }: SidebarProps) {
   const router = useRouter();
 
-  const [isOpen, setIsOpen] = useState(true);
   const [isMessageOpen, setIsMessageOpen] = useState(false);
 
   const isMessagePage = messageItems.some(
@@ -94,7 +95,7 @@ export function Sidebar({ user }: SidebarProps) {
   }, [isMessagePage]);
 
   const handleToggle = () => {
-    setIsOpen((prev) => !prev);
+    onToggle();
   };
 
   const handleMessageToggle = () => {

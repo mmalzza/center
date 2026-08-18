@@ -10,8 +10,9 @@ export interface DailyRecord {
     online: { b2b: number; b2c: number };
     offline: { b2b: number; b2c: number };
     unpurchased: { b2b: number; b2c: number };
-    // 재구매(온라인) 세부 기간 breakdown - 전체 합과 무관하게 하루치 근사치
+    // 재구매(온라인/오프라인) 세부 기간 breakdown - 전체 합과 무관하게 하루치 근사치
     onlineTooltip: { within1m: number; within3m: number; within1y: number };
+    offlineTooltip: { within1m: number; within3m: number; within1y: number };
   };
   expertOrders: Record<string, number>;
   employeeResponses: Record<string, { count: number; isOff: boolean }>;
@@ -48,6 +49,11 @@ export function generateDailyRecord(dateStr: string): DailyRecord {
     offline: { b2b: randInt(repurchaseRng, 2, 6), b2c: randInt(repurchaseRng, 1, 4) },
     unpurchased: { b2b: randInt(repurchaseRng, 0, 3), b2c: randInt(repurchaseRng, 1, 4) },
     onlineTooltip: {
+      within1m: randInt(repurchaseRng, 1, 4),
+      within3m: randInt(repurchaseRng, 1, 3),
+      within1y: randInt(repurchaseRng, 0, 2),
+    },
+    offlineTooltip: {
       within1m: randInt(repurchaseRng, 1, 4),
       within3m: randInt(repurchaseRng, 1, 3),
       within1y: randInt(repurchaseRng, 0, 2),

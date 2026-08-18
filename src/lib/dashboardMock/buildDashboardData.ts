@@ -61,6 +61,7 @@ function buildDonutSegments(
   segmentTemplates: DonutChartSegment[],
   values: { ONLINE: number; OFFLINE: number; UNPURCHASED: number },
   onlineTooltip?: RepurchaseCounts['onlineTooltip'],
+  offlineTooltip?: RepurchaseCounts['offlineTooltip'],
 ): DonutChartSegment[] {
   const total = values.ONLINE + values.OFFLINE + values.UNPURCHASED;
   return segmentTemplates.map((segment) => {
@@ -68,7 +69,10 @@ function buildDonutSegments(
     const percentage = total === 0 ? 0 : Math.round((count / total) * 1000) / 10;
     const base: DonutChartSegment = { ...segment, percentage, userCount: count };
 
-    if (segment.id === 'ONLINE' && onlineTooltip) {
+    const tooltip =
+      segment.id === 'ONLINE' ? onlineTooltip : segment.id === 'OFFLINE' ? offlineTooltip : undefined;
+
+    if (tooltip) {
       const tooltipTemplates = segment.tooltipDetails ?? [
         { label: '1개월 이내', count: 0, unit: '건' as const },
         { label: '3개월 이내', count: 0, unit: '건' as const },
@@ -77,9 +81,9 @@ function buildDonutSegments(
       return {
         ...base,
         tooltipDetails: [
-          { ...tooltipTemplates[0], count: onlineTooltip.within1m },
-          { ...tooltipTemplates[1], count: onlineTooltip.within3m },
-          { ...tooltipTemplates[2], count: onlineTooltip.within1y },
+          { ...tooltipTemplates[0], count: tooltip.within1m },
+          { ...tooltipTemplates[1], count: tooltip.within3m },
+          { ...tooltipTemplates[2], count: tooltip.within1y },
         ],
       };
     }
@@ -166,6 +170,7 @@ export function buildDashboardData({
       template.repurchaseRate.chartData,
       { ONLINE: onlineTotal, OFFLINE: offlineTotal, UNPURCHASED: unpurchasedTotal },
       currentRepurchaseCounts.onlineTooltip,
+      currentRepurchaseCounts.offlineTooltip,
     ),
     segments: template.repurchaseRate.segments && {
       B2B: buildRepurchaseSegment(

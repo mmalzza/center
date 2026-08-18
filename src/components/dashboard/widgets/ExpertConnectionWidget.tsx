@@ -10,6 +10,7 @@ import {
 } from 'recharts';
 
 import type {
+  ConnectionTooltipDetails,
   ExpertConnectionWidgetData,
 } from '@/types/dashboard';
 
@@ -74,6 +75,10 @@ export function ExpertConnectionWidget({
               content={({ active, payload, label }) => {
                 if (!active || !payload || !payload.length) return null;
 
+                const tooltipDetails = payload[0]?.payload?.tooltipDetails as
+                  | ConnectionTooltipDetails
+                  | undefined;
+
                 return (
                   <div className="rounded-input border border-neutral-200 bg-neutral-50 p-2.5 text-[11px] text-neutral-900 shadow-md">
                     <p className="mb-1.5 font-bold">{label}</p>
@@ -95,6 +100,23 @@ export function ExpertConnectionWidget({
                           </span>
                         </div>
                       ))}
+
+                      {tooltipDetails && (
+                        <div className="mt-1 flex flex-col gap-1 border-t border-neutral-200 pt-1">
+                          <div className="flex items-center justify-between gap-4">
+                            <span className="text-neutral-700">예약 인입</span>
+                            <span className="font-semibold text-neutral-900">
+                              {tooltipDetails.inboundCount}건
+                            </span>
+                          </div>
+                          <div className="flex items-center justify-between gap-4">
+                            <span className="text-neutral-700">예약 수락</span>
+                            <span className="font-semibold text-neutral-900">
+                              {tooltipDetails.acceptedCount}건
+                            </span>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 );

@@ -37,17 +37,25 @@ export function EmployeeResponseWidget({
         </div>
 
         {data.hasOffEmployeeToggle && (
-          <label className="flex items-center gap-2 text-[12px] text-neutral-500">
+          <div className="flex items-center gap-2 text-[12px] text-neutral-500">
             휴무 직원 포함
-            <input
-              type="checkbox"
-              checked={includeOffEmployees}
-              onChange={(event) =>
-                setIncludeOffEmployees(event.target.checked)
-              }
-              className="h-3.5 w-3.5 accent-primary-500"
-            />
-          </label>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={includeOffEmployees}
+              aria-label="휴무 직원 포함"
+              onClick={() => setIncludeOffEmployees((prev) => !prev)}
+              className={`relative h-5 w-9 shrink-0 rounded-full transition-colors ${
+                includeOffEmployees ? 'bg-primary-500' : 'bg-neutral-200'
+              }`}
+            >
+              <span
+                className={`absolute top-0.5 left-0.5 h-4 w-4 rounded-full bg-white shadow transition-transform ${
+                  includeOffEmployees ? 'translate-x-0' : 'translate-x-4'
+                }`}
+              />
+            </button>
+          </div>
         )}
       </div>
 
@@ -80,7 +88,7 @@ export function EmployeeResponseWidget({
               {employee.employeeName}
             </span>
 
-            <span className="text-[16px] font-semibold text-neutral-900">
+            <span className="text-[13px] font-semibold text-neutral-900">
               {employee.responseCount}건
             </span>
 

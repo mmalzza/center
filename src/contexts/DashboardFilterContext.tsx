@@ -5,7 +5,7 @@ import useSWR from 'swr';
 import dashboardData from '@/data/dashboard.json';
 import type { DashboardApiResponse, DashboardGranularity, DashboardResponse } from '@/types/dashboard';
 import type { DateRange } from '@/utils/date';
-import { formatDashDate, getPresetRange, parseDotDate } from '@/utils/date';
+import { formatDashDate, getPresetRange } from '@/utils/date';
 import { fetcher } from '@/utils/fetcher';
 
 const staticData = dashboardData as DashboardResponse;
@@ -26,11 +26,9 @@ interface DashboardFilterContextValue {
 const DashboardFilterContext = createContext<DashboardFilterContextValue | null>(null);
 
 export function DashboardFilterProvider({ children }: { children: ReactNode }) {
-  const [dateRange, setDateRange] = useState<DateRange>(() => ({
-    start: parseDotDate(staticData.filter.startDate),
-    end: parseDotDate(staticData.filter.endDate),
-  }));
-  const [selectedPreset, setSelectedPreset] = useState(staticData.filter.selectedPreset);
+  // 최초 진입 시 dashboard.json의 고정 날짜 대신 "이번 달 1일 ~ 오늘"을 기본값으로 사용한다.
+  const [dateRange, setDateRange] = useState<DateRange>(() => getPresetRange('THIS_MONTH'));
+  const [selectedPreset, setSelectedPreset] = useState('THIS_MONTH');
   const [granularity, setGranularity] = useState<DashboardGranularity>(
     staticData.filter.selectedAggregationUnit as DashboardGranularity,
   );

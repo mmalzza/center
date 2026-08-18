@@ -91,7 +91,12 @@
         "label": "오프라인",
         "percentage": 35,
         "userCount": 105,
-        "colorCode": "#28249C"
+        "colorCode": "#28249C",
+        "tooltipDetails": [
+          { "label": "1개월 이내", "count": 45, "unit": "건" },
+          { "label": "3개월 이내", "count": 40, "unit": "건" },
+          { "label": "1년 이내", "count": 20, "unit": "건" }
+        ]
       },
       {
         "id": "UNPURCHASED",
@@ -127,7 +132,12 @@
             "label": "오프라인",
             "percentage": 55,
             "userCount": 82,
-            "colorCode": "#28249C"
+            "colorCode": "#28249C",
+            "tooltipDetails": [
+              { "label": "1개월 이내", "count": 35, "unit": "건" },
+              { "label": "3개월 이내", "count": 30, "unit": "건" },
+              { "label": "1년 이내", "count": 17, "unit": "건" }
+            ]
           },
           {
             "id": "UNPURCHASED",
@@ -163,7 +173,12 @@
             "label": "오프라인",
             "percentage": 22,
             "userCount": 33,
-            "colorCode": "#28249C"
+            "colorCode": "#28249C",
+            "tooltipDetails": [
+              { "label": "1개월 이내", "count": 14, "unit": "건" },
+              { "label": "3개월 이내", "count": 12, "unit": "건" },
+              { "label": "1년 이내", "count": 7, "unit": "건" }
+            ]
           },
           {
             "id": "UNPURCHASED",

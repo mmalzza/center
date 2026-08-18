@@ -30,13 +30,11 @@ export function DashboardGrid() {
 }
 
 function DashboardGridContent() {
-  const [lastUpdated, setLastUpdated] = useState(() =>
-    formatLastUpdated(new Date()),
-  );
+  const [lastUpdated] = useState(() => formatLastUpdated(new Date()));
   const { data: apiData, isLoading, error, retry } = useDashboardFilter();
 
   const handleRefresh = () => {
-    setLastUpdated(formatLastUpdated(new Date()));
+    window.location.reload();
   };
 
   return (

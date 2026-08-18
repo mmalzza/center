@@ -55,17 +55,25 @@ export function ExpertOrdersWidget({
         </div>
 
         {data.hasNameMaskingToggle && (
-          <label className="flex items-center gap-2 text-[12px] text-neutral-500">
+          <div className="flex items-center gap-2 text-[12px] text-neutral-500">
             성명 숨김
-            <input
-              type="checkbox"
-              checked={isNameMasked}
-              onChange={(event) =>
-                setIsNameMasked(event.target.checked)
-              }
-              className="h-3.5 w-3.5 accent-primary-500"
-            />
-          </label>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={isNameMasked}
+              aria-label="성명 숨김"
+              onClick={() => setIsNameMasked((prev) => !prev)}
+              className={`relative h-5 w-9 shrink-0 rounded-full transition-colors ${
+                isNameMasked ? 'bg-primary-500' : 'bg-neutral-200'
+              }`}
+            >
+              <span
+                className={`absolute top-0.5 left-0.5 h-4 w-4 rounded-full bg-white shadow transition-transform ${
+                  isNameMasked ? 'translate-x-0' : 'translate-x-4'
+                }`}
+              />
+            </button>
+          </div>
         )}
       </div>
 
@@ -110,7 +118,7 @@ export function ExpertOrdersWidget({
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="w-[35px] text-[16px] font-semibold text-neutral-900">
+              <span className="w-[35px] text-[13px] font-semibold text-neutral-900">
                 {expert.orderCount}건
               </span>
 
@@ -128,7 +136,7 @@ export function ExpertOrdersWidget({
               </div>
             </div>
 
-            <span className="text-right text-[16px] font-semibold text-neutral-700">
+            <span className="text-right text-[13px] font-semibold text-neutral-700">
               {expert.sharePercentage}%
             </span>
 

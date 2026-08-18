@@ -16,6 +16,7 @@ export interface RepurchaseCounts {
   offline: { b2b: number; b2c: number };
   unpurchased: { b2b: number; b2c: number };
   onlineTooltip: { within1m: number; within3m: number; within1y: number };
+  offlineTooltip: { within1m: number; within3m: number; within1y: number };
 }
 
 export function aggregateRepurchaseCounts(days: DailyRecord[]): RepurchaseCounts {
@@ -36,6 +37,11 @@ export function aggregateRepurchaseCounts(days: DailyRecord[]): RepurchaseCounts
       within1m: sum(days.map((d) => d.repurchase.onlineTooltip.within1m)),
       within3m: sum(days.map((d) => d.repurchase.onlineTooltip.within3m)),
       within1y: sum(days.map((d) => d.repurchase.onlineTooltip.within1y)),
+    },
+    offlineTooltip: {
+      within1m: sum(days.map((d) => d.repurchase.offlineTooltip.within1m)),
+      within3m: sum(days.map((d) => d.repurchase.offlineTooltip.within3m)),
+      within1y: sum(days.map((d) => d.repurchase.offlineTooltip.within1y)),
     },
   };
 }
